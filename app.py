@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# Custom CSS Adaptif (Light & Dark Mode)
+# Custom CSS Adaptif (Sesuai Mode Terang & Gelap)
 st.markdown(
     """
     <style>
@@ -26,7 +26,7 @@ st.markdown(
         opacity: 0.8;
         margin-bottom: 20px;
     }
-    /* Kotak border untuk st.latex() */
+    /* Bingkai otomatis untuk st.latex() mirip buku cetak */
     div[data-testid="stLatex"] {
         background-color: var(--secondary-background-color);
         border: 2px solid var(--text-color);
@@ -207,7 +207,7 @@ elif menu == "3. Sifat Pangkat Numerus":
     st.write(
         f"1. Ubah ke bentuk sifat:"
         f" $^{{{a_s3}}}\\log({{{x_base}}}^{{{n_pangkat}}}) = {n_pangkat} \\cdot"
-        f" {a_s3}\\log({x_base})$"
+        f" ^{{{a_s3}}}\\log({x_base})$"
     )
     st.write(f"2. Hitung nilai $^{{{a_s3}}}\\log({x_base}) = {val_base_log}$")
     st.write(
@@ -260,16 +260,17 @@ elif menu == "4. Sifat Pangkat Basis & Numerus":
     pembagi = m_exp / n_exp
     hasil_akhir = int(pembagi * base_log)
 
+    # Perbaikan: Menggunakan tanda $...$ agar LaTeX dirender rapi
     st.write(
-        f"1. Bentuk Soal: $^{{{basis_total}}}\\log({numerus_total})$ yang"
-        f" disederhanakan menjadi $^{{{a_base}^{n_exp}}}\\log({x_base}^{m_exp})$"
+        f"1. Bentuk Soal: $^{{{basis_total}}}\\log({numerus_total})$ disederhanakan"
+        f" menjadi $^{{{a_base}^{n_exp}}}\\log({x_base}^{m_exp})$"
     )
     st.write(
-        f"2. Gunakan rumus sifat: \\frac{{{m_exp}}}{{{n_exp}}} \\cdot"
-        f" {a_base}\\log({x_base})"
+        f"2. Gunakan rumus sifat: $\\frac{{{m_exp}}}{{{n_exp}}} \\cdot"
+        f" ^{{{a_base}}}\\log({x_base})$"
     )
     st.write(
-        f"3. Hitung pecahan: \\frac{{{m_exp}}}{{{n_exp}}} \\cdot {base_log}"
+        f"3. Hitung pecahan: $\\frac{{{m_exp}}}{{{n_exp}}} \\cdot {base_log}$"
     )
 
     st.success(
