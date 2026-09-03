@@ -70,7 +70,7 @@ if menu == "1. Definisi Logaritma":
     st.markdown("""
     <div class="formula-box">
         <h3>Bentuk Umum Logaritma</h3>
-        <h4>$$^a\\log x = n \\iff a^n = x$$</h4>
+        <h4>^a\log x=n\ ↔\ a^n=x</h4>
     </div>
     """, unsafe_allow_html=True)
     
