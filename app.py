@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# Custom CSS Adaptif (Bekerja di Light & Dark Mode)
+# Custom CSS Adaptif (Light & Dark Mode)
 st.markdown(
     """
     <style>
@@ -26,7 +26,7 @@ st.markdown(
         opacity: 0.8;
         margin-bottom: 20px;
     }
-    /* Styling khusus membuat kotak di sekitar st.latex() mirip buku */
+    /* Kotak border untuk st.latex() */
     div[data-testid="stLatex"] {
         background-color: var(--secondary-background-color);
         border: 2px solid var(--text-color);
@@ -64,8 +64,6 @@ st.markdown(
 # SIDEBAR NAVIGATION
 # -----------------------------------------------------------------------------
 st.sidebar.header("🎯 Pilih Materi/Sifat")
-
-# Opsi navigasi dibuat ringkas dan rapi
 menu = st.sidebar.radio(
     "Navigasi Modul:",
     [
@@ -83,35 +81,15 @@ st.sidebar.info(
 )
 
 # -----------------------------------------------------------------------------
-# PENYESUAIAN IF-ELIF KONDISI MENU
-# -----------------------------------------------------------------------------
-if menu == "1. Definisi Logaritma":
-    # ... (Kode Menu 1) ...
-    pass
-
-elif menu == "2. Sifat Dasar":
-    # ... (Kode Menu 2) ...
-    pass
-
-elif menu == "3. Sifat Pangkat Numerus":
-    # ... (Kode Menu 3) ...
-    pass
-
-elif menu == "4. Sifat Pangkat Basis & Numerus":
-    # ... (Kode Menu 4) ...
-    pass
-
-# -----------------------------------------------------------------------------
 # MENU 1: DEFINISI LOGARITMA
 # -----------------------------------------------------------------------------
 if menu == "1. Definisi Logaritma":
-    st.header("1. Definisi")
+    st.header("1. Definisi Logaritma")
     st.write("Bentuk umum logaritma adalah:")
 
-    # Equation persis seperti kotak di buku
     st.latex(r"^a\log x = n \iff a^n = x")
 
-    st.write("**dengan:**")
+    st.write("**Dengan:**")
     st.write(
         "- $a$ = bilangan pokok/basis logaritma ($a > 0$ dan $a \\neq 1$)"
     )
@@ -163,11 +141,10 @@ if menu == "1. Definisi Logaritma":
 # -----------------------------------------------------------------------------
 # MENU 2: SIFAT DASAR
 # -----------------------------------------------------------------------------
-elif menu == "2. Sifat: ^a log 1 = 0 & ^a log a = 1":
+elif menu == "2. Sifat Dasar":
     st.header("2. Sifat-sifat Logaritma")
     st.write("a. Untuk $a > 0$ dan $a \\neq 1$, berlaku:")
 
-    # Equation persis seperti poin 2.a di foto buku cetak
     st.latex(r"^a\log 1 = 0 \quad \text{dan} \quad ^a\log a = 1")
 
     a_val = st.number_input(
@@ -195,13 +172,13 @@ elif menu == "2. Sifat: ^a log 1 = 0 & ^a log a = 1":
 # -----------------------------------------------------------------------------
 # MENU 3: SIFAT EKSPONEN NUMERUS
 # -----------------------------------------------------------------------------
-elif menu == "3. Sifat: ^a log (x^n) = n · ^a log x":
+elif menu == "3. Sifat Pangkat Numerus":
     st.header("3. Sifat Pangkat Numerus")
     st.write(
-        "b. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, n, x \\in R$, berlaku:"
+        "b. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, n, x \\in \\mathbb{R}$,"
+        " berlaku:"
     )
 
-    # Equation persis seperti poin 2.b di foto buku cetak
     st.latex(r"^a\log x^n = n \cdot {}^a\log x")
 
     col1, col2, col3 = st.columns(3)
@@ -244,13 +221,13 @@ elif menu == "3. Sifat: ^a log (x^n) = n · ^a log x":
 # -----------------------------------------------------------------------------
 # MENU 4: SIFAT EKSPONEN BASIS & NUMERUS
 # -----------------------------------------------------------------------------
-elif menu == "4. Sifat: ^(a^n) log (x^m) = (m/n) · ^a log x":
+elif menu == "4. Sifat Pangkat Basis & Numerus":
     st.header("4. Sifat Pangkat Basis dan Numerus")
     st.write(
-        "c. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, m, n, x \\in R$, berlaku:"
+        "c. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, m, n, x \\in \\mathbb{R}$,"
+        " berlaku:"
     )
 
-    # Equation persis seperti poin 2.c di foto buku cetak (pecahan m/n sempurna)
     st.latex(r"^{a^n}\log x^m = \frac{m}{n} \cdot {}^a\log x")
 
     col1, col2 = st.columns(2)
