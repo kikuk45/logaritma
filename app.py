@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# Custom CSS adaptif (Support Light/Dark Mode + Style Kotak Formula seperti Buku Cetak)
+# Custom CSS Adaptif (Bekerja di Light & Dark Mode)
 st.markdown(
     """
     <style>
@@ -26,35 +26,24 @@ st.markdown(
         opacity: 0.8;
         margin-bottom: 20px;
     }
+    /* Styling khusus membuat kotak di sekitar st.latex() mirip buku */
+    div[data-testid="stLatex"] {
+        background-color: var(--secondary-background-color);
+        border: 2px solid var(--text-color);
+        border-radius: 8px;
+        padding: 10px 20px;
+        margin: 15px auto;
+        width: fit-content;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
     .card {
         background-color: var(--secondary-background-color);
         color: var(--text-color);
         padding: 20px;
         border-radius: 10px;
         border-left: 5px solid #1E88E5;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         margin-bottom: 15px;
-    }
-    /* Style Kotak Formula mirip foto buku cetak */
-    .formula-box-outer {
-        display: flex;
-        justify-content: center;
-        margin: 15px 0;
-    }
-    .formula-box {
-        background-color: var(--secondary-background-color);
-        color: var(--text-color);
-        padding: 12px 25px;
-        border-radius: 8px;
-        border: 2px solid var(--text-color);
-        text-align: center;
-        display: inline-block;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .formula-box .katex-display {
-        margin: 0 !important;
     }
     </style>
 """,
@@ -95,25 +84,22 @@ st.sidebar.info(
 # MENU 1: DEFINISI LOGARITMA
 # -----------------------------------------------------------------------------
 if menu == "1. Definisi Logaritma":
-    st.header("1. Definisi Logaritma")
+    st.header("1. Definisi")
     st.write("Bentuk umum logaritma adalah:")
 
-    # Box Rumus persis buku
-    st.markdown(
-        """
-    <div class="formula-box-outer">
-        <div class="formula-box">
-            <h4>$^a\\log x = n \\iff a^n = x$</h4>
-        </div>
-    </div>
-    """,
-        unsafe_allow_html=True,
-    )
+    # Equation persis seperti kotak di buku
+    st.latex(r"^a\log x = n \iff a^n = x")
 
-    st.write("**Dengan:**")
-    st.write("- $a$ = bilangan pokok/basis logaritma ($a > 0$ dan $a \\neq 1$)")
-    st.write("- $x$ = numerus yaitu bilangan yang dicari logaritmanya ($x > 0$)")
-    st.write("- $n$ = hasil logaritma, bisa bernilai positif, nol, atau negatif")
+    st.write("**dengan:**")
+    st.write(
+        "- $a$ = bilangan pokok/basis logaritma ($a > 0$ dan $a \\neq 1$)"
+    )
+    st.write(
+        "- $x$ = numerus yaitu bilangan yang dicari logaritmanya ($x > 0$)"
+    )
+    st.write(
+        "- $n$ = hasil logaritma, bisa bernilai positif, nol, atau negatif"
+    )
 
     st.markdown("---")
 
@@ -160,16 +146,8 @@ elif menu == "2. Sifat: ^a log 1 = 0 & ^a log a = 1":
     st.header("2. Sifat-sifat Logaritma")
     st.write("a. Untuk $a > 0$ dan $a \\neq 1$, berlaku:")
 
-    st.markdown(
-        """
-    <div class="formula-box-outer">
-        <div class="formula-box">
-            <h4>$^a\\log 1 = 0 \\quad \\text{dan} \\quad ^a\\log a = 1$</h4>
-        </div>
-    </div>
-    """,
-        unsafe_allow_html=True,
-    )
+    # Equation persis seperti poin 2.a di foto buku cetak
+    st.latex(r"^a\log 1 = 0 \quad \text{dan} \quad ^a\log a = 1")
 
     a_val = st.number_input(
         "Masukkan Nilai Basis (a):", value=5, step=1, min_value=2
@@ -181,7 +159,7 @@ elif menu == "2. Sifat: ^a log 1 = 0 & ^a log a = 1":
         st.markdown('<div class="card">', unsafe_allow_html=True)
         st.subheader("Sifat A: $^a\\log 1 = 0$")
         st.write(f"**Contoh Input:** Basis $a = {a_val}$, Numerus $x = 1$")
-        st.latex(f"^{{{a_val}}}\\log 1 = 0")
+        st.latex(rf"^{{{a_val}}}\log 1 = 0")
         st.caption(f"Bukti: {a_val}⁰ = 1")
         st.markdown("</div>", unsafe_allow_html=True)
 
@@ -189,7 +167,7 @@ elif menu == "2. Sifat: ^a log 1 = 0 & ^a log a = 1":
         st.markdown('<div class="card">', unsafe_allow_html=True)
         st.subheader("Sifat B: $^a\\log a = 1$")
         st.write(f"**Contoh Input:** Basis $a = {a_val}$, Numerus $x = {a_val}$")
-        st.latex(f"^{{{a_val}}}\\log {a_val} = 1")
+        st.latex(rf"^{{{a_val}}}\log {a_val} = 1")
         st.caption(f"Bukti: {a_val}¹ = {a_val}")
         st.markdown("</div>", unsafe_allow_html=True)
 
@@ -198,18 +176,12 @@ elif menu == "2. Sifat: ^a log 1 = 0 & ^a log a = 1":
 # -----------------------------------------------------------------------------
 elif menu == "3. Sifat: ^a log (x^n) = n · ^a log x":
     st.header("3. Sifat Pangkat Numerus")
-    st.write("b. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, n, x \\in \\mathbb{R}$, berlaku:")
-
-    st.markdown(
-        """
-    <div class="formula-box-outer">
-        <div class="formula-box">
-            <h4>$^a\\log x^n = n \\cdot {}^a\\log x$</h4>
-        </div>
-    </div>
-    """,
-        unsafe_allow_html=True,
+    st.write(
+        "b. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, n, x \\in R$, berlaku:"
     )
+
+    # Equation persis seperti poin 2.b di foto buku cetak
+    st.latex(r"^a\log x^n = n \cdot {}^a\log x")
 
     col1, col2, col3 = st.columns(3)
 
@@ -254,20 +226,11 @@ elif menu == "3. Sifat: ^a log (x^n) = n · ^a log x":
 elif menu == "4. Sifat: ^(a^n) log (x^m) = (m/n) · ^a log x":
     st.header("4. Sifat Pangkat Basis dan Numerus")
     st.write(
-        "c. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, m, n, x \\in \\mathbb{R}$,"
-        " berlaku:"
+        "c. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, m, n, x \\in R$, berlaku:"
     )
 
-    st.markdown(
-        """
-    <div class="formula-box-outer">
-        <div class="formula-box">
-            <h4>$^{a^n}\\log x^m = \\frac{m}{n} \\cdot {}^a\\log x$</h4>
-        </div>
-    </div>
-    """,
-        unsafe_allow_html=True,
-    )
+    # Equation persis seperti poin 2.c di foto buku cetak (pecahan m/n sempurna)
+    st.latex(r"^{a^n}\log x^m = \frac{m}{n} \cdot {}^a\log x")
 
     col1, col2 = st.columns(2)
 
