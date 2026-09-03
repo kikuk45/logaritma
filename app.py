@@ -1,6 +1,7 @@
 from fractions import Fraction
 import math
 import streamlit as st
+
 # -----------------------------------------------------------------------------
 # KONFIGURASI HALAMAN
 # -----------------------------------------------------------------------------
@@ -10,7 +11,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# Custom CSS Adaptif (Sesuai Mode Terang & Gelap)
+# Custom CSS Adaptif (Light & Dark Mode + Bingkai Rumus Buku Cetak)
 st.markdown(
     """
     <style>
@@ -26,7 +27,7 @@ st.markdown(
         opacity: 0.8;
         margin-bottom: 20px;
     }
-    /* Bingkai otomatis untuk st.latex() mirip buku cetak */
+    /* Bingkai otomatis untuk st.latex() persis seperti buku cetak */
     div[data-testid="stLatex"] {
         background-color: var(--secondary-background-color);
         border: 2px solid var(--text-color);
@@ -247,7 +248,7 @@ elif menu == "4. Sifat Pangkat Basis & Numerus":
             "Numerus Utama (x):", value=2, step=1, min_value=1, key="x_base_s4"
         )
         m_exp = st.number_input(
-            "Pangkat Numerus (m):", value=4, step=1, key="m_exp_s4"
+            "Pangkat Numerus (m):", value=3, step=1, key="m_exp_s4"
         )
 
     basis_total = int(math.pow(a_base, n_exp))
@@ -257,10 +258,17 @@ elif menu == "4. Sifat Pangkat Basis & Numerus":
     st.subheader("📋 Langkah Penyelesaian:")
 
     base_log = int(math.log(x_base, a_base))
-    pembagi = m_exp / n_exp
-    hasil_akhir = int(pembagi * base_log)
 
-    # Perbaikan: Menggunakan tanda $...$ agar LaTeX dirender rapi
+    # Perhitungan bentuk pecahan (misal: 3/2)
+    pembagi_frac = Fraction(m_exp, n_exp) * base_log
+
+    if pembagi_frac.denominator == 1:
+        hasil_latex = f"{pembagi_frac.numerator}"
+    else:
+        hasil_latex = (
+            f"\\frac{{{pembagi_frac.numerator}}}{{{pembagi_frac.denominator}}}"
+        )
+
     st.write(
         f"1. Bentuk Soal: $^{{{basis_total}}}\\log({numerus_total})$ disederhanakan"
         f" menjadi $^{{{a_base}^{n_exp}}}\\log({x_base}^{m_exp})$"
@@ -270,10 +278,11 @@ elif menu == "4. Sifat Pangkat Basis & Numerus":
         f" ^{{{a_base}}}\\log({x_base})$"
     )
     st.write(
-        f"3. Hitung pecahan: $\\frac{{{m_exp}}}{{{n_exp}}} \\cdot {base_log}$"
+        f"3. Hitung pecahan: $\\frac{{{m_exp}}}{{{n_exp}}} \\cdot {base_log} ="
+        f" {hasil_latex}$"
     )
 
     st.success(
         f"**Hasil Akhir:** $^{{{basis_total}}}\\log({numerus_total}) ="
-        f" {hasil_akhir}$"
+        f" {hasil_latex}$"
     )
