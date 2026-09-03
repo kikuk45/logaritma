@@ -1,6 +1,6 @@
+from fractions import Fraction
 import math
 import streamlit as st
-
 # -----------------------------------------------------------------------------
 # KONFIGURASI HALAMAN
 # -----------------------------------------------------------------------------
