@@ -75,12 +75,6 @@ menu = st.sidebar.radio(
     ],
 )
 
-st.sidebar.markdown("---")
-st.sidebar.info(
-    "💡 **Catatan:** Seluruh kalkulasi diset menggunakan bilangan bulat (tanpa"
-    " koma)."
-)
-
 # -----------------------------------------------------------------------------
 # MENU 1: DEFINISI LOGARITMA
 # -----------------------------------------------------------------------------
@@ -286,3 +280,5 @@ elif menu == "4. Sifat Pangkat Basis & Numerus":
         f"**Hasil Akhir:** $^{{{basis_total}}}\\log({numerus_total}) ="
         f" {hasil_latex}$"
     )
+
+"Oleh : Mochammad Rifqi Al Khadziq"
