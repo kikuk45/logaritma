@@ -64,13 +64,15 @@ st.markdown(
 # SIDEBAR NAVIGATION
 # -----------------------------------------------------------------------------
 st.sidebar.header("🎯 Pilih Materi/Sifat")
+
+# Opsi navigasi dibuat ringkas dan rapi
 menu = st.sidebar.radio(
     "Navigasi Modul:",
     [
         "1. Definisi Logaritma",
-        "2. Sifat: ^a log 1 = 0 & ^a log a = 1",
-        "3. Sifat: ^a log (x^n) = n · ^a log x",
-        "4. Sifat: ^(a^n) log (x^m) = (m/n) · ^a log x",
+        "2. Sifat Dasar",
+        "3. Sifat Pangkat Numerus",
+        "4. Sifat Pangkat Basis & Numerus",
     ],
 )
 
@@ -79,6 +81,25 @@ st.sidebar.info(
     "💡 **Catatan:** Seluruh kalkulasi diset menggunakan bilangan bulat (tanpa"
     " koma)."
 )
+
+# -----------------------------------------------------------------------------
+# PENYESUAIAN IF-ELIF KONDISI MENU
+# -----------------------------------------------------------------------------
+if menu == "1. Definisi Logaritma":
+    # ... (Kode Menu 1) ...
+    pass
+
+elif menu == "2. Sifat Dasar":
+    # ... (Kode Menu 2) ...
+    pass
+
+elif menu == "3. Sifat Pangkat Numerus":
+    # ... (Kode Menu 3) ...
+    pass
+
+elif menu == "4. Sifat Pangkat Basis & Numerus":
+    # ... (Kode Menu 4) ...
+    pass
 
 # -----------------------------------------------------------------------------
 # MENU 1: DEFINISI LOGARITMA
