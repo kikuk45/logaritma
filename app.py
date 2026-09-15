@@ -16,7 +16,7 @@ st.set_page_config(
 # -----------------------------------------------------------------------------
 # KUSTOMISASI LATAR BELAKANG (CSS & BACKGROUND DARI URL GITHUB)
 # -----------------------------------------------------------------------------
-background_url = "https://raw.githubusercontent.com/kikuk45/logaritma/main/bg_siswa.avif"
+background_url = "[https://raw.githubusercontent.com/kikuk45/logaritma/main/bg_siswa.avif](https://raw.githubusercontent.com/kikuk45/logaritma/main/bg_siswa.avif)"
 
 page_bg_css = f"""
 
