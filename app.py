@@ -5,22 +5,7 @@ import base64
 import streamlit as st
 
 # -----------------------------------------------------------------------------
-# FUNGSI HELPER: KONVERSI GAMBAR KE BASE64
-# -----------------------------------------------------------------------------
-def get_base64_of_bin_file(bin_file):
-    with open(bin_file, 'rb') as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
-
-def set_png_background(png_file):
-    bin_str = get_base64_of_bin_file(png_file)
-    page_bg_img = f'''
-    
-    '''
-    st.markdown(page_bg_img, unsafe_allow_html=True)
-
-# -----------------------------------------------------------------------------
-# KONFIGURASI HALAMAN
+# KONFIGURASI HALAMAN (HARUS DI BARIS PERTAMA)
 # -----------------------------------------------------------------------------
 st.set_page_config(
     page_title="Modul & Kalkulator Logaritma Interaktif",
@@ -29,11 +14,24 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Panggil fungsi background (Pastikan file 'bg_siswa.png' ada di direktori yang sama)
-try:
-    set_png_background('bg_siswa.png')
-except FileNotFoundError:
-    st.warning("File latar belakang 'bg_siswa.png' tidak ditemukan. Pastikan nama file dan lokasinya sudah benar.")
+# -----------------------------------------------------------------------------
+# FUNGSI BACKGROUND GAMBAR LOKAL
+# -----------------------------------------------------------------------------
+def set_png_background(png_file):
+    try:
+        with open(png_file, "rb") as f:
+            data = f.read()
+        encoded = base64.b64encode(data).decode()
+        
+        css_code = f"""
+        
+        """
+        st.markdown(css_code, unsafe_allow_html=True)
+    except FileNotFoundError:
+        st.warning(f"File latar belakang '{png_file}' tidak ditemukan di direktori yang sama dengan app.py!")
+
+# Panggil fungsi background
+set_png_background('bg_siswa.png')
 
 # -----------------------------------------------------------------------------
 # HEADER APLIKASI
