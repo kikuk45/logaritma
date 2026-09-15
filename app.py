@@ -11,14 +11,12 @@ st.set_page_config(
     layout="wide",
 )
 
-# Custom CSS Adaptif (Light & Dark Mode + Bingkai Rumus Buku Cetak)
-st.markdown(
-    """
-    
-""",
-    unsafe_allow_html=True,
-)
+# Custom CSS Adaptif (Satu String Utuh)
+custom_css = """
+
+"""
+
+st.markdown(custom_css, unsafe_allow_html=True)
 
 # Header Utama
-st.markdown(
-    '
+st.markdown('
