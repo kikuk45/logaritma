@@ -21,6 +21,11 @@ def set_background(image_file):
     try:
         with open(image_file, "rb") as f:
             encoded_string = base64.b64encode(f.read()).decode()
+        
+        # Deteksi ekstensi file secara otomatis untuk tipe MIME
+        ext = image_file.split(".")[-1].lower()
+        mime_type = "image/jpeg" if ext in ["jpg", "jpeg"] else f"image/{ext}"
+
         css = f"""
         
         """
@@ -32,8 +37,8 @@ def set_background(image_file):
         """
         st.markdown(css, unsafe_allow_html=True)
 
-# Panggil fungsi background dengan nama file tanpa spasi
-set_background("bg_siswa.avif")
+# Panggil fungsi background menggunakan format PNG yang baru
+set_background("bg_siswa.png")
 
 # -----------------------------------------------------------------------------
 # HEADER APLIKASI
