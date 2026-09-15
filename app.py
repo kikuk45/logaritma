@@ -98,13 +98,13 @@ elif menu == "2. Sifat Dasar":
         st.subheader("Sifat A: \(^a\\log 1 = 0\)")
         st.write(f"Contoh untuk basis \(a = {a_val}\):")
         st.latex(rf"^{{{a_val}}}\log 1 = 0")
-        st.caption(f"Bukti: {a_val}⁰ = 1")
+        st.caption(f"Bukti: \({a_val}^0 = 1\)")
 
     with col2:
         st.subheader("Sifat B: \(^a\\log a = 1\)")
         st.write(f"Contoh untuk basis \(a = {a_val}\):")
-        st.latex(rf"^{{{a_val}}}\log({a_val}) = 1")
-        st.caption(f"Bukti: {a_val}¹ = {a_val}")
+        st.latex(rf"^{{{a_val}}}\log {a_val} = 1")
+        st.caption(f"Bukti: \({a_val}^1 = {a_val}\)")
 
 # -----------------------------------------------------------------------------
 # MENU 3: SIFAT EKSPONEN NUMERUS
