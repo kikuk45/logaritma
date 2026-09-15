@@ -18,7 +18,7 @@ st.set_page_config(
 # -----------------------------------------------------------------------------
 # Tips: Gunakan link gambar langsung (berakhiran .jpg, .png, atau .webp) 
 # agar latar belakang dapat dimuat dengan sempurna oleh browser.
-background_image_url = "URL_GAMBAR_ANDA_DI_SINI"
+background_image_url = "https://www.magnific.com/idn/foto-vektor-gratis/siswa"
 
 page_bg_css = f"""
 
