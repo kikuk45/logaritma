@@ -71,9 +71,9 @@ menu = st.sidebar.radio(
         "1. Definisi Logaritma",
         "2. Untuk $a > 0$ dan $a \\neq 1$, berlaku:",
         "3. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, n, x \\in \\mathbb{R}$,"
-        " berlaku:",
+        "berlaku:",
         "4. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, m, n, x \\in \\mathbb{R}$,"
-        " berlaku:",
+        "berlaku:",
     ],
 )
 
@@ -138,7 +138,7 @@ if menu == "1. Definisi Logaritma":
 # -----------------------------------------------------------------------------
 # MENU 2: SIFAT DASAR
 # -----------------------------------------------------------------------------
-elif menu == "2. Sifat Dasar":
+elif menu == "2. Untuk $a > 0$ dan $a \\neq 1$, berlaku:":
     st.header("2. Sifat-sifat Logaritma")
     st.write("a. Untuk $a > 0$ dan $a \\neq 1$, berlaku:")
 
@@ -169,7 +169,8 @@ elif menu == "2. Sifat Dasar":
 # -----------------------------------------------------------------------------
 # MENU 3: SIFAT EKSPONEN NUMERUS
 # -----------------------------------------------------------------------------
-elif menu == "3. Sifat Pangkat Numerus":
+elif menu == "3. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, n, x \\in \\mathbb{R}$,"
+        "berlaku:"
     st.header("3. Sifat Pangkat Numerus")
     st.write(
         "b. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, n, x \\in \\mathbb{R}$,"
@@ -218,7 +219,8 @@ elif menu == "3. Sifat Pangkat Numerus":
 # -----------------------------------------------------------------------------
 # MENU 4: SIFAT EKSPONEN BASIS & NUMERUS
 # -----------------------------------------------------------------------------
-elif menu == "4. Sifat Pangkat Basis & Numerus":
+elif menu == "4. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, m, n, x \\in \\mathbb{R}$,"
+        "berlaku:"
     st.header("4. Sifat Pangkat Basis dan Numerus")
     st.write(
         "c. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, m, n, x \\in \\mathbb{R}$,"
