@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# CUSTOM CSS - TEMA KARTUN PENDIDIKAN & EDU-TECH MODERN
+# CUSTOM CSS - TEMA KARTUN PENDIDIKAN & PAKSA LIGHT MODE
 # -----------------------------------------------------------------------------
 st.markdown("""
 
@@ -119,13 +119,13 @@ elif selected_key == "Sifat A":
     col1, col2 = st.columns(2)
 
     with col1:
-        with st.container(border=True):
+        with st.container():
             st.subheader("Sifat 1")
             st.latex(rf"^{a_val}\log 1 = 0")
             st.caption(f"Bukti: {a_val}⁰ = 1")
 
     with col2:
-        with st.container(border=True):
+        with st.container():
             st.subheader("Sifat 2")
             st.latex(rf"^{a_val}\log {a_val} = 1")
             st.caption(f"Bukti: {a_val}¹ = {a_val}")
