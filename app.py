@@ -14,6 +14,19 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
+# KUSTOMISASI LATAR BELAKANG (BACKGROUND CSS)
+# -----------------------------------------------------------------------------
+# Tips: Gunakan link gambar langsung (berakhiran .jpg, .png, atau .webp) 
+# agar latar belakang dapat dimuat dengan sempurna oleh browser.
+background_image_url = "URL_GAMBAR_ANDA_DI_SINI"
+
+page_bg_css = f"""
+
+"""
+
+st.markdown(page_bg_css, unsafe_allow_html=True)
+
+# -----------------------------------------------------------------------------
 # HEADER APLIKASI
 # -----------------------------------------------------------------------------
 st.title("📐 Kalkulator & Learning Media Logaritma")
