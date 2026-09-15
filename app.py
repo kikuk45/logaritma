@@ -12,16 +12,15 @@ st.set_page_config(
 )
 
 # Custom CSS Adaptif (Light & Dark Mode + Bingkai Rumus Buku Cetak)
-st.markdown(
-    """
-    
-""",
-    unsafe_allow_html=True,
-)
+css_code = """
+
+"""
+
+st.markdown(css_code, unsafe_allow_html=True)
 
 st.markdown(
     '
-📐 Kalkulator & Learning Media Logaritma',unsafe_allow_html=True,)st.markdown('Materi sesuai buku cetak Matematika Kelas X'" (Definisi & Sifat-Sifat Logaritma)",unsafe_allow_html=True,)-----------------------------------------------------------------------------SIDEBAR NAVIGATION-----------------------------------------------------------------------------st.sidebar.header("🎯 Pilih Materi/Sifat")menu = st.sidebar.radio("Navigasi Modul:",["1. Definisi Logaritma","2. Sifat Dasar","3. Sifat Pangkat Numerus","4. Sifat Pangkat Basis & Numerus",],)-----------------------------------------------------------------------------MENU 1: DEFINISI LOGARITMA-----------------------------------------------------------------------------if menu == "1. Definisi Logaritma":st.header("1. Definisi Logaritma")st.write("Bentuk umum logaritma adalah:")st.latex(r"^a\log x = n \iff a^n = x")
+📐 Kalkulator & Learning Media Logaritma',unsafe_allow_html=True,)st.markdown('Materi sesuai buku cetak Matematika Kelas X (Definisi & Sifat-Sifat Logaritma)',unsafe_allow_html=True,)-----------------------------------------------------------------------------SIDEBAR NAVIGATION-----------------------------------------------------------------------------st.sidebar.header("🎯 Pilih Materi/Sifat")menu = st.sidebar.radio("Navigasi Modul:",["1. Definisi Logaritma","2. Sifat Dasar","3. Sifat Pangkat Numerus","4. Sifat Pangkat Basis & Numerus",],)-----------------------------------------------------------------------------MENU 1: DEFINISI LOGARITMA-----------------------------------------------------------------------------if menu == "1. Definisi Logaritma":st.header("1. Definisi Logaritma")st.write("Bentuk umum logaritma adalah:")st.latex(r"^a\log x = n \iff a^n = x")
 
 st.write("**Dengan:**")
 st.write(
