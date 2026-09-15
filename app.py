@@ -1,3 +1,4 @@
+import base64
 from decimal import Decimal
 from fractions import Fraction
 import math
@@ -14,17 +15,20 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# KUSTOMISASI LATAR BELAKANG (BACKGROUND CSS)
+# KUSTOMISASI LATAR BELAKANG (BACKGROUND CSS DENGAN BASE64)
 # -----------------------------------------------------------------------------
-# Tips: Gunakan link gambar langsung (berakhiran .jpg, .png, atau .webp) 
-# agar latar belakang dapat dimuat dengan sempurna oleh browser.
-background_image_url = "bg siswa.avif"
+image_path = "bg_siswa.avif"  # Pastikan nama file di GitHub sama persis (tanpa spasi)
 
-page_bg_css = f"""
-
-"""
-
-st.markdown(page_bg_css, unsafe_allow_html=True)
+try:
+    with open(image_path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+    
+    page_bg_css = f"""
+    
+    """
+    st.markdown(page_bg_css, unsafe_allow_html=True)
+except FileNotFoundError:
+    st.warning(f"File gambar '{image_path}' tidak ditemukan. Pastikan sudah di-upload ke folder yang sama dengan app.py.")
 
 # -----------------------------------------------------------------------------
 # HEADER APLIKASI
