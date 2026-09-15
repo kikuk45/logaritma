@@ -27,10 +27,7 @@ def set_background(image_file):
         """
         st.markdown(css, unsafe_allow_html=True)
     except FileNotFoundError:
-        css = """
-        
-        """
-        st.markdown(css, unsafe_allow_html=True)
+        st.warning(f"File gambar background '{image_file}' tidak ditemukan di direktori proyek!")
 
 # Panggil fungsi background
 set_background("bg_siswa.png")
