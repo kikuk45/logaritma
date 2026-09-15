@@ -21,11 +21,10 @@ st.caption("Materi Pembelajaran Matematika Kelas X — Definisi & Sifat-Sifat Lo
 st.divider()
 
 # -----------------------------------------------------------------------------
-# SIDEBAR NAVIGATION (Rapi & Ringkas)
+# SIDEBAR NAVIGATION
 # -----------------------------------------------------------------------------
 st.sidebar.header("🎯 Navigasi Materi")
 
-# Menggunakan format ringkas agar menu di sidebar tidak terlalu panjang & berantakan
 menu_options = {
     "Definisi Logaritma": "📘 Definisi Logaritma",
     "Sifat A": "🔹 Sifat a: Logaritma Basis & Numerus Sama",
@@ -50,6 +49,5 @@ selected_key = st.sidebar.radio(
 # -----------------------------------------------------------------------------
 if selected_key == "Definisi Logaritma":
     st.header("📘 Definisi Logaritma")
-    
-    st.info("**Bentuk Umum Logaritma:**\n\n"
-            r"
+
+    st.info("**Bentuk Umum Logaritma:**\n\n" r"
