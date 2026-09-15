@@ -48,7 +48,7 @@ if menu == "1. Definisi Logaritma":
 
     with col1:
         st.subheader("A. Perpangkatan ➔ Logaritma")
-        st.caption("Ubah bentuk \(a^n = x\) menjadi \(^a\\log x = n\)")
+        st.caption("Ubah bentuk perpangkatan menjadi logaritma")
 
         a_1 = st.number_input("Basis (a):", value=2, step=1, key="a_1")
         n_1 = st.number_input("Pangkat (n):", value=3, step=1, key="n_1")
@@ -56,12 +56,16 @@ if menu == "1. Definisi Logaritma":
         x_1 = int(math.pow(a_1, n_1)) if a_1 != 0 else 0
 
         st.divider()
-        st.markdown(f"**Bentuk Pangkat:** \({a_1}^{{{n_1}}} = {x_1}\)")
-        st.success(f"**Bentuk Logaritma:** \(^{{{a_1}}}\\log{{{x_1}}} = {n_1}\)")
+        st.write("**Bentuk Pangkat:**")
+        st.latex(rf"{a_1}^{{{n_1}}} = {x_1}")
+        
+        st.write("**Bentuk Logaritma:**")
+        st.success(f"^{a_1}log({x_1}) = {n_1}")
+        st.latex(rf"^{{{a_1}}}\log({{{x_1}}}) = {n_1}")
 
     with col2:
         st.subheader("B. Logaritma ➔ Perpangkatan")
-        st.caption("Ubah bentuk \(^a\\log x = n\) menjadi \(a^n = x\)")
+        st.caption("Ubah bentuk logaritma menjadi perpangkatan")
 
         a_2 = st.number_input("Basis Log (a):", value=3, step=1, min_value=2, key="a_2")
         x_2 = st.number_input("Numerus (x):", value=81, step=1, min_value=1, key="x_2")
@@ -69,8 +73,12 @@ if menu == "1. Definisi Logaritma":
         try:
             n_2 = int(math.log(x_2, a_2))
             st.divider()
-            st.markdown(f"**Bentuk Logaritma:** \(^{{{a_2}}}\\log{{{x_2}}} = {n_2}\)")
-            st.success(f"**Bentuk Pangkat:** \({a_2}^{{{n_2}}} = {x_2}\)")
+            st.write("**Bentuk Logaritma:**")
+            st.latex(rf"^{{{a_2}}}\log({{{x_2}}}) = {n_2}")
+            
+            st.write("**Bentuk Pangkat:**")
+            st.success(f"{a_2}^{n_2} = {x_2}")
+            st.latex(rf"{a_2}^{{{n_2}}} = {x_2}")
         except ValueError:
             st.error("Masukkan nilai numerus dan basis yang valid!")
 
@@ -89,15 +97,15 @@ elif menu == "2. Sifat Dasar":
 
     with col1:
         with st.container(border=True):
-            st.subheader("Sifat A: \(^a\\log 1 = 0\)")
-            st.write(f"**Contoh Input:** Basis \(a = {a_val}\), Numerus \(x = 1\)")
+            st.subheader("Sifat A")
+            st.write(f"Basis \(a = {a_val}\), Numerus \(x = 1\)")
             st.latex(rf"^{{{a_val}}}\log 1 = 0")
             st.caption(f"Bukti: {a_val}⁰ = 1")
 
     with col2:
         with st.container(border=True):
-            st.subheader("Sifat B: \(^a\\log a = 1\)")
-            st.write(f"**Contoh Input:** Basis \(a = {a_val}\), Numerus \(x = {a_val}\)")
+            st.subheader("Sifat B")
+            st.write(f"Basis \(a = {a_val}\), Numerus \(x = {a_val}\)")
             st.latex(rf"^{{{a_val}}}\log {a_val} = 1")
             st.caption(f"Bukti: {a_val}¹ = {a_val}")
 
@@ -127,11 +135,13 @@ elif menu == "3. Sifat Pangkat Numerus":
     val_base_log = int(math.log(x_base, a_s3))
     hasil_akhir = n_pangkat * val_base_log
 
-    st.write(f"1. Ubah ke bentuk sifat: \(^{{{a_s3}}}\\log({{{x_base}}}^{{{n_pangkat}}}) = {n_pangkat} \\cdot ^{{{a_s3}}}\\log({x_base})\)")
+    st.write("1. Ubah ke bentuk sifat:")
+    st.latex(rf"^{{{a_s3}}}\log({x_base}^{{{n_pangkat}}}) = {n_pangkat} \cdot ^{{{a_s3}}}\log({x_base})")
     st.write(f"2. Hitung nilai \(^{{{a_s3}}}\\log({x_base}) = {val_base_log}\)")
-    st.write(f"3. Kalikan dengan pangkat \(n\): \({n_pangkat} \\cdot {val_base_log}\)")
+    st.write(f"3. Kalikan dengan pangkat \(n\): {n_pangkat} × {val_base_log}")
 
-    st.success(f"**Hasil Akhir:** \(^{{{a_s3}}}\\log({numerus_total}) = {hasil_akhir}\)")
+    st.success(f"Hasil Akhir: {hasil_akhir}")
+    st.latex(rf"^{{{a_s3}}}\log({numerus_total}) = {hasil_akhir}")
 
 # -----------------------------------------------------------------------------
 # MENU 4: SIFAT EKSPONEN BASIS & NUMERUS
@@ -168,11 +178,14 @@ elif menu == "4. Sifat Pangkat Basis & Numerus":
     else:
         hasil_latex = f"\\frac{{{pembagi_frac.numerator}}}{{{pembagi_frac.denominator}}}"
 
-    st.write(f"1. Bentuk Soal: \(^{{{basis_total}}}\\log({numerus_total})\) disederhanakan menjadi \(^{{{a_base}^{n_exp}}}\\log({x_base}^{m_exp})\)")
-    st.write(f"2. Gunakan rumus sifat: \(\\frac{{{m_exp}}}{{{n_exp}}} \\cdot ^{{{a_base}}}\\log({x_base})\)")
-    st.write(f"3. Hitung pecahan: \(\\frac{{{m_exp}}}{{{n_exp}}} \\cdot {base_log} = {hasil_latex}\)")
+    st.write("1. Bentuk Soal Disederhanakan:")
+    st.latex(rf"^{{{basis_total}}}\log({numerus_total}) \implies ^{{{a_base}^{{{n_exp}}}}}\log({x_base}^{{{m_exp}}})")
+    
+    st.write("2. Gunakan rumus sifat:")
+    st.latex(rf"\frac{{{m_exp}}}{{{n_exp}}} \cdot ^{{{a_base}}}\log({x_base})")
 
-    st.success(f"**Hasil Akhir:** \(^{{{basis_total}}}\\log({numerus_total}) = {hasil_latex}\)")
+    st.success(f"Hasil Akhir:")
+    st.latex(rf"^{{{basis_total}}}\log({numerus_total}) = {hasil_latex}")
 
 # -----------------------------------------------------------------------------
 # FOOTER
