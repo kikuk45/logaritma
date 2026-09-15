@@ -1,6 +1,7 @@
 from decimal import Decimal
 from fractions import Fraction
 import math
+import base64
 import streamlit as st
 
 # -----------------------------------------------------------------------------
@@ -14,14 +15,25 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# KUSTOMISASI LATAR BELAKANG (CSS KHUSUS STREAMLIT & URL GITHUB)
+# FUNGSI UNTUK MEMUAT BACKGROUND LOKAL (BASE64)
 # -----------------------------------------------------------------------------
-background_url = "https://raw.githubusercontent.com/kikuk45/logaritma/main/bg_siswa.avif"
+def set_background(image_file):
+    try:
+        with open(image_file, "rb") as f:
+            encoded_string = base64.b64encode(f.read()).decode()
+        css = f"""
+        
+        """
+        st.markdown(css, unsafe_allow_html=True)
+    except FileNotFoundError:
+        # Fallback jika file lokal tidak ada, gunakan URL langsung
+        css = """
+        
+        """
+        st.markdown(css, unsafe_allow_html=True)
 
-page_bg_css = f"""
-
-"""
-st.markdown(page_bg_css, unsafe_allow_html=True)
+# Panggil fungsi background (pastikan file 'bg_siswa.avif' berada di satu folder dengan app.py)
+set_background("bg_siswa.avif")
 
 # -----------------------------------------------------------------------------
 # HEADER APLIKASI
