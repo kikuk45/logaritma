@@ -5,16 +5,6 @@ import base64
 import streamlit as st
 
 # -----------------------------------------------------------------------------
-# KONFIGURASI HALAMAN (HARUS DI BARIS PERTAMA)
-# -----------------------------------------------------------------------------
-st.set_page_config(
-    page_title="Modul & Kalkulator Logaritma Interaktif",
-    page_icon="📐",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
-
-# -----------------------------------------------------------------------------
 # FUNGSI BACKGROUND GAMBAR LOKAL
 # -----------------------------------------------------------------------------
 def set_png_background(png_file):
@@ -28,9 +18,19 @@ def set_png_background(png_file):
         """
         st.markdown(css_code, unsafe_allow_html=True)
     except FileNotFoundError:
-        st.warning(f"File latar belakang '{png_file}' tidak ditemukan di direktori yang sama dengan app.py!")
+        pass
 
-# Panggil fungsi background
+# -----------------------------------------------------------------------------
+# KONFIGURASI HALAMAN
+# -----------------------------------------------------------------------------
+st.set_page_config(
+    page_title="Modul & Kalkulator Logaritma Interaktif",
+    page_icon="📐",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+# Panggil fungsi background (Pastikan nama file sesuai dengan file gambar Anda, misal: bg_siswa.png atau bg_username.png)
 set_png_background('bg_siswa.png')
 
 # -----------------------------------------------------------------------------
