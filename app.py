@@ -1,3 +1,4 @@
+import base64
 from decimal import Decimal
 from fractions import Fraction
 import math
@@ -12,6 +13,38 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+# -----------------------------------------------------------------------------
+# FUNGSI UNTUK MENGAMBIL BASE64 DARI GAMBAR LOKAL
+# -----------------------------------------------------------------------------
+def get_base64_of_bin_file(bin_file):
+    try:
+        with open(bin_file, 'rb') as f:
+            data = f.read()
+        return base64.b64encode(data).decode()
+    except FileNotFoundError:
+        return None
+
+# Nama file gambar kartun anak SMA yang disimpan di folder proyek yang sama
+# (Mendukung format .png, .jpg, .jpeg, .avif, atau .webp)
+IMAGE_FILE_PATH = "siswa-sma-berjalan-percaya-diri-sambil-membawa-buku_705652-3155.avif"
+
+img_base64 = get_base64_of_bin_file(IMAGE_FILE_PATH)
+
+# Jika gambar ditemukan, gunakan Base64. Jika tidak, gunakan URL cadangan (fallback)
+if img_base64:
+    bg_style = f"data:image/avif;base64,{img_base64}"
+else:
+    bg_style = "https://img.freepik.com/premium-vector/high-school-students-walking-confidently-while-carrying-books_705652-3155.jpg"
+
+# -----------------------------------------------------------------------------
+# CUSTOM CSS FOR BACKGROUND & CONTAINER STYLING
+# -----------------------------------------------------------------------------
+page_bg_css = f"""
+
+"""
+
+st.markdown(page_bg_css, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
 # HEADER APLIKASI
