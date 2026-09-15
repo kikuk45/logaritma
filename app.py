@@ -26,13 +26,13 @@ def set_background(image_file):
         """
         st.markdown(css, unsafe_allow_html=True)
     except FileNotFoundError:
-        # Fallback jika file lokal tidak ada, gunakan URL langsung
+        # Fallback jika file lokal tidak ditemukan
         css = """
         
         """
         st.markdown(css, unsafe_allow_html=True)
 
-# Panggil fungsi background (pastikan file 'bg_siswa.avif' berada di satu folder dengan app.py)
+# Panggil fungsi background dengan nama file tanpa spasi
 set_background("bg_siswa.avif")
 
 # -----------------------------------------------------------------------------
