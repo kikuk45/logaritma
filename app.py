@@ -37,10 +37,10 @@ if menu == "1. Definisi Logaritma":
 
     st.latex(r"^a\log x = n \iff a^n = x")
 
-    st.write("**Dengan:**")
-    st.write("- \(a\) = bilangan pokok/basis logaritma (\(a > 0\) dan \(a \\neq 1\))")
-    st.write("- \(x\) = numerus yaitu bilangan yang dicari logaritmanya (\(x > 0\))")
-    st.write("- \(n\) = hasil logaritma, bisa bernilai positif, nol, atau negatif")
+    st.write("**Keterangan:**")
+    st.latex(r"a = \text{basis/bilangan pokok } (a > 0, a \neq 1)")
+    st.latex(r"x = \text{numerus } (x > 0)")
+    st.latex(r"n = \text{hasil logaritma}")
 
     st.divider()
 
@@ -60,7 +60,6 @@ if menu == "1. Definisi Logaritma":
         st.latex(rf"{a_1}^{{{n_1}}} = {x_1}")
         
         st.write("**Bentuk Logaritma:**")
-        st.success(f"^{a_1}log({x_1}) = {n_1}")
         st.latex(rf"^{{{a_1}}}\log({{{x_1}}}) = {n_1}")
 
     with col2:
@@ -77,7 +76,6 @@ if menu == "1. Definisi Logaritma":
             st.latex(rf"^{{{a_2}}}\log({{{x_2}}}) = {n_2}")
             
             st.write("**Bentuk Pangkat:**")
-            st.success(f"{a_2}^{n_2} = {x_2}")
             st.latex(rf"{a_2}^{{{n_2}}} = {x_2}")
         except ValueError:
             st.error("Masukkan nilai numerus dan basis yang valid!")
@@ -87,10 +85,13 @@ if menu == "1. Definisi Logaritma":
 # -----------------------------------------------------------------------------
 elif menu == "2. Sifat Dasar":
     st.header("2. Sifat-sifat Logaritma")
-    st.write("a. Untuk \(a > 0\) dan \(a \\neq 1\), berlaku:")
+    st.write("Untuk basis logaritma yang memenuhi syarat:")
+    st.latex(r"a > 0 \quad \text{dan} \quad a \neq 1")
 
+    st.write("Berlaku sifat dasar:")
     st.latex(r"^a\log 1 = 0 \quad \text{dan} \quad ^a\log a = 1")
 
+    st.divider()
     a_val = st.number_input("Masukkan Nilai Basis (a):", value=5, step=1, min_value=2)
 
     col1, col2 = st.columns(2)
@@ -98,14 +99,12 @@ elif menu == "2. Sifat Dasar":
     with col1:
         with st.container(border=True):
             st.subheader("Sifat A")
-            st.write(f"Basis \(a = {a_val}\), Numerus \(x = 1\)")
             st.latex(rf"^{{{a_val}}}\log 1 = 0")
             st.caption(f"Bukti: {a_val}⁰ = 1")
 
     with col2:
         with st.container(border=True):
             st.subheader("Sifat B")
-            st.write(f"Basis \(a = {a_val}\), Numerus \(x = {a_val}\)")
             st.latex(rf"^{{{a_val}}}\log {a_val} = 1")
             st.caption(f"Bukti: {a_val}¹ = {a_val}")
 
@@ -114,10 +113,13 @@ elif menu == "2. Sifat Dasar":
 # -----------------------------------------------------------------------------
 elif menu == "3. Sifat Pangkat Numerus":
     st.header("3. Sifat Pangkat Numerus")
-    st.write("b. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, n, x \\in \\mathbb{R}\), berlaku:")
+    st.write("Untuk syarat:")
+    st.latex(r"a > 0, \quad a \neq 1, \quad x > 0, \quad \text{dan } a, n, x \in \mathbb{R}")
 
+    st.write("Berlaku rumus:")
     st.latex(r"^a\log x^n = n \cdot {}^a\log x")
 
+    st.divider()
     col1, col2, col3 = st.columns(3)
 
     with col1:
@@ -135,12 +137,13 @@ elif menu == "3. Sifat Pangkat Numerus":
     val_base_log = int(math.log(x_base, a_s3))
     hasil_akhir = n_pangkat * val_base_log
 
-    st.write("1. Ubah ke bentuk sifat:")
+    st.write("1. Bentuk Soal Sesuai Sifat:")
     st.latex(rf"^{{{a_s3}}}\log({x_base}^{{{n_pangkat}}}) = {n_pangkat} \cdot ^{{{a_s3}}}\log({x_base})")
-    st.write(f"2. Hitung nilai \(^{{{a_s3}}}\\log({x_base}) = {val_base_log}\)")
-    st.write(f"3. Kalikan dengan pangkat \(n\): {n_pangkat} × {val_base_log}")
+    
+    st.write("2. Substitusi Hasil:")
+    st.latex(rf"= {n_pangkat} \cdot {val_base_log}")
 
-    st.success(f"Hasil Akhir: {hasil_akhir}")
+    st.write("3. Hasil Akhir:")
     st.latex(rf"^{{{a_s3}}}\log({numerus_total}) = {hasil_akhir}")
 
 # -----------------------------------------------------------------------------
@@ -148,10 +151,13 @@ elif menu == "3. Sifat Pangkat Numerus":
 # -----------------------------------------------------------------------------
 elif menu == "4. Sifat Pangkat Basis & Numerus":
     st.header("4. Sifat Pangkat Basis dan Numerus")
-    st.write("c. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, m, n, x \\in \\mathbb{R}\), berlaku:")
+    st.write("Untuk syarat:")
+    st.latex(r"a > 0, \quad a \neq 1, \quad x > 0, \quad \text{dan } a, m, n, x \in \mathbb{R}")
 
+    st.write("Berlaku rumus:")
     st.latex(r"^{a^n}\log x^m = \frac{m}{n} \cdot {}^a\log x")
 
+    st.divider()
     col1, col2 = st.columns(2)
 
     with col1:
@@ -181,10 +187,10 @@ elif menu == "4. Sifat Pangkat Basis & Numerus":
     st.write("1. Bentuk Soal Disederhanakan:")
     st.latex(rf"^{{{basis_total}}}\log({numerus_total}) \implies ^{{{a_base}^{{{n_exp}}}}}\log({x_base}^{{{m_exp}}})")
     
-    st.write("2. Gunakan rumus sifat:")
-    st.latex(rf"\frac{{{m_exp}}}{{{n_exp}}} \cdot ^{{{a_base}}}\log({x_base})")
+    st.write("2. Gunakan Rumus Sifat:")
+    st.latex(rf"\frac{{{m_exp}}}{{{n_exp}}} \cdot ^{{{a_base}}}\log({x_base}) = \frac{{{m_exp}}}{{{n_exp}}} \cdot {base_log}")
 
-    st.success(f"Hasil Akhir:")
+    st.write("3. Hasil Akhir:")
     st.latex(rf"^{{{basis_total}}}\log({numerus_total}) = {hasil_latex}")
 
 # -----------------------------------------------------------------------------
