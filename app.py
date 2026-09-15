@@ -18,7 +18,7 @@ st.set_page_config(
 # BACKGROUND IMAGE (bg_siswa.png)
 # -----------------------------------------------------------------------------
 def set_background(image_file: str):
-    """Menjadikan gambar lokal sebagai background aplikasi Streamlit."""
+    """Menjadikan gambar lokal sebagai background aplikasi Streamlit, tampil utuh tanpa terpotong."""
     with open(image_file, "rb") as f:
         img_data = f.read()
     b64_encoded = base64.b64encode(img_data).decode()
@@ -26,29 +26,29 @@ def set_background(image_file: str):
     st.markdown(
         f"""
         <style>
+        /* Foto ditampilkan utuh (contain) supaya tidak ada bagian yang terpotong */
         .stApp {{
             background-image: url("data:image/png;base64,{b64_encoded}");
-            background-size: cover;
-            background-position: center;
             background-repeat: no-repeat;
+            background-position: top center;
+            background-size: contain;
             background-attachment: fixed;
+            background-color: #eaf4fb; /* warna pengisi area kosong di sisi foto, sesuaikan jika perlu */
         }}
 
-        /* Lapisan semi-transparan agar teks tetap terbaca di atas foto */
-        .stApp::before {{
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.85);
-            z-index: -1;
-        }}
-
-        /* Membuat sidebar sedikit transparan juga agar serasi */
+        /* Sidebar dibuat lebih solid agar menu navigasi tetap jelas */
         section[data-testid="stSidebar"] {{
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.97);
+        }}
+
+        /* Konten utama diletakkan di atas kartu semi-transparan agar teks & rumus tetap
+           mudah dibaca, sementara foto di sekitarnya tetap terlihat penuh */
+        .block-container {{
+            background-color: rgba(255, 255, 255, 0.88);
+            border-radius: 18px;
+            padding: 2rem 2.5rem 3rem 2.5rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
         }}
         </style>
         """,
