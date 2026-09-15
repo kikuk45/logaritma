@@ -14,27 +14,10 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# CUSTOM CSS FOR BACKGROUND & STYLING (Bukan Hitam Lagi)
-# -----------------------------------------------------------------------------
-st.markdown(
-    """
-    
-    """,
-    unsafe_allow_html=True
-)
-
-# -----------------------------------------------------------------------------
-# HEADER APLIKASI & ILUSTRASI KARTUN SMA
+# HEADER APLIKASI
 # -----------------------------------------------------------------------------
 st.title("📐 Kalkulator & Learning Media Logaritma")
 st.caption("Materi sesuai buku cetak Matematika Kelas X (Definisi & Sifat-Sifat Logaritma)")
-
-# Ilustrasi Siswa SMA / Kartun Edukasi
-st.image(
-    "https://img.freepik.com/free-vector/flat-hand-drawn-high-school-students-illustration_23-2149372332.jpg",
-    use_container_width=True,
-)
-
 st.divider()
 
 # -----------------------------------------------------------------------------
