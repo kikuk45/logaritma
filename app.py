@@ -21,7 +21,7 @@ st.sidebar.header("🎯 Pilih Materi/Sifat")
 menu = st.sidebar.radio(
     "Navigasi Modul:",
     [
-        "1. Definisi Logaritma",
+        "Definisi Logaritma",
         "a. Untuk a > 0 dan a ≠ 1, berlaku:",
         "b. Untuk a > 0, a ≠ 1, x > 0 dan a, n, x ∈ R, berlaku:",
         "c. Untuk a > 0, a ≠ 1, x > 0 dan a, m, n, x ∈ R, berlaku:",
@@ -31,8 +31,8 @@ menu = st.sidebar.radio(
 # -----------------------------------------------------------------------------
 # MENU 1: DEFINISI LOGARITMA
 # -----------------------------------------------------------------------------
-if menu == "1. Definisi Logaritma":
-    st.header("1. Definisi Logaritma")
+if menu == "Definisi Logaritma":
+    st.header("Definisi Logaritma")
     st.write("Bentuk umum logaritma adalah:")
 
     st.latex(r"^a\log x = n \iff a^n = x")
