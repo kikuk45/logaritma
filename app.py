@@ -152,12 +152,12 @@ elif menu == "c. Untuk a > 0, a ≠ 1, x > 0 dan a, m, n, x ∈ R, berlaku:":
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("Input Basis (\(a^n\))")
+        st.subheader("Input Basis (aⁿ)")
         a_base = st.number_input("Basis Utama (a):", value=2, step=1, min_value=2, key="a_base_s4")
         n_exp = st.number_input("Pangkat Basis (n):", value=2, step=1, min_value=1, key="n_exp_s4")
 
     with col2:
-        st.subheader("Input Numerus (\(x^m\))")
+        st.subheader("Input Numerus (xᵐ)")
         x_base = st.number_input("Numerus Utama (x):", value=2, step=1, min_value=1, key="x_base_s4")
         m_exp = st.number_input("Pangkat Numerus (m):", value=3, step=1, key="m_exp_s4")
 
