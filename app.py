@@ -1,24 +1,8 @@
+import base64
 from decimal import Decimal
 from fractions import Fraction
 import math
-import base64
 import streamlit as st
-
-# -----------------------------------------------------------------------------
-# FUNGSI BACKGROUND GAMBAR LOKAL
-# -----------------------------------------------------------------------------
-def set_png_background(png_file):
-    try:
-        with open(png_file, "rb") as f:
-            data = f.read()
-        encoded = base64.b64encode(data).decode()
-        
-        css_code = f"""
-        
-        """
-        st.markdown(css_code, unsafe_allow_html=True)
-    except FileNotFoundError:
-        pass
 
 # -----------------------------------------------------------------------------
 # KONFIGURASI HALAMAN
@@ -30,8 +14,50 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Panggil fungsi background (Pastikan nama file sesuai dengan file gambar Anda, misal: bg_siswa.png atau bg_username.png)
-set_png_background('bg_siswa.png')
+# -----------------------------------------------------------------------------
+# BACKGROUND IMAGE (bg_siswa.png)
+# -----------------------------------------------------------------------------
+def set_background(image_file: str):
+    """Menjadikan gambar lokal sebagai background aplikasi Streamlit."""
+    with open(image_file, "rb") as f:
+        img_data = f.read()
+    b64_encoded = base64.b64encode(img_data).decode()
+
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{b64_encoded}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }}
+
+        /* Lapisan semi-transparan agar teks tetap terbaca di atas foto */
+        .stApp::before {{
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.85);
+            z-index: -1;
+        }}
+
+        /* Membuat sidebar sedikit transparan juga agar serasi */
+        section[data-testid="stSidebar"] {{
+            background-color: rgba(255, 255, 255, 0.9);
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# Panggil fungsi background sebelum konten lain dirender.
+# Pastikan file bg_siswa.png berada satu folder dengan app.py (sudah sesuai di repo kamu).
+set_background("bg_siswa.png")
 
 # -----------------------------------------------------------------------------
 # HEADER APLIKASI
@@ -94,7 +120,7 @@ if selected_key == "Definisi Logaritma":
         st.divider()
         st.write("**Bentuk Pangkat:**")
         st.latex(rf"{a_1}^{{{n_1}}} = {x_1}")
-        
+
         st.write("**Bentuk Logaritma:**")
         st.latex(rf"^{a_1}\log {x_1} = {n_1}")
 
@@ -110,7 +136,7 @@ if selected_key == "Definisi Logaritma":
             st.divider()
             st.write("**Bentuk Logaritma:**")
             st.latex(rf"^{a_2}\log {x_2} = {n_2}")
-            
+
             st.write("**Bentuk Pangkat:**")
             st.latex(rf"{a_2}^{{{n_2}}} = {x_2}")
         except ValueError:
@@ -169,7 +195,7 @@ elif selected_key == "Sifat B":
 
     st.write("1. Bentuk Soal Sesuai Sifat:")
     st.latex(rf"^{a_s3}\log ({x_base}^{{{n_pangkat}}}) = {n_pangkat} \cdot ^{a_s3}\log {x_base}")
-    
+
     st.write("2. Substitusi Hasil:")
     st.latex(rf"= {n_pangkat} \cdot {val_base_log}")
 
@@ -213,7 +239,7 @@ elif selected_key == "Sifat C":
 
     st.write("1. Bentuk Soal Disederhanakan:")
     st.latex(rf"^{basis_total}\log {numerus_total} \implies ^{{{a_base}^{{{n_exp}}}}}\log ({x_base}^{{{m_exp}}})")
-    
+
     st.write("2. Gunakan Rumus Sifat:")
     st.latex(rf"\frac{{{m_exp}}}{{{n_exp}}} \cdot ^{a_base}\log {x_base} = \frac{{{m_exp}}}{{{n_exp}}} \cdot {base_log}")
 
@@ -357,7 +383,7 @@ elif selected_key == "Sifat G":
             log_bx = math.log(x_g, b_g)
             log_ba = math.log(a_g, b_g)
             frac_res = Fraction(Decimal(str(log_bx / log_ba))).limit_denominator() if not (log_bx/log_ba).is_integer() else int(log_bx/log_ba)
-            
+
             if isinstance(frac_res, Fraction):
                 res_str = f"\\frac{{{frac_res.numerator}}}{{{frac_res.denominator}}}"
             else:
