@@ -1,4 +1,3 @@
-import base64
 from decimal import Decimal
 from fractions import Fraction
 import math
@@ -15,20 +14,14 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# KUSTOMISASI LATAR BELAKANG (BACKGROUND CSS DENGAN BASE64)
+# KUSTOMISASI LATAR BELAKANG (CSS & BACKGROUND DARI URL GITHUB)
 # -----------------------------------------------------------------------------
-image_path = "bg_siswa.avif"  # Pastikan nama file di GitHub sama persis (tanpa spasi)
+background_url = "https://raw.githubusercontent.com/kikuk45/logaritma/main/bg_siswa.avif"
 
-try:
-    with open(image_path, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read()).decode()
-    
-    page_bg_css = f"""
-    
-    """
-    st.markdown(page_bg_css, unsafe_allow_html=True)
-except FileNotFoundError:
-    st.warning(f"File gambar '{image_path}' tidak ditemukan. Pastikan sudah di-upload ke folder yang sama dengan app.py.")
+page_bg_css = f"""
+
+"""
+st.markdown(page_bg_css, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
 # HEADER APLIKASI
