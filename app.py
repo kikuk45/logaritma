@@ -18,7 +18,8 @@ st.set_page_config(
 # BACKGROUND IMAGE (bg_siswa.png)
 # -----------------------------------------------------------------------------
 def set_background(image_file: str):
-    """Menjadikan gambar lokal sebagai background aplikasi Streamlit, tampil utuh tanpa terpotong."""
+    """Menjadikan gambar lokal sebagai background aplikasi Streamlit, tampil utuh tanpa terpotong,
+    dengan kartu konten solid supaya teks tetap kontras dan mudah dibaca."""
     with open(image_file, "rb") as f:
         img_data = f.read()
     b64_encoded = base64.b64encode(img_data).decode()
@@ -27,7 +28,7 @@ def set_background(image_file: str):
         f"""
         <style>
         /* Foto ditampilkan utuh (contain) supaya tidak ada bagian yang terpotong */
-        .stApp {{
+        [data-testid="stAppViewContainer"] {{
             background-image: url("data:image/png;base64,{b64_encoded}");
             background-repeat: no-repeat;
             background-position: top center;
@@ -36,19 +37,30 @@ def set_background(image_file: str):
             background-color: #eaf4fb; /* warna pengisi area kosong di sisi foto, sesuaikan jika perlu */
         }}
 
-        /* Sidebar dibuat lebih solid agar menu navigasi tetap jelas */
-        section[data-testid="stSidebar"] {{
-            background-color: rgba(255, 255, 255, 0.97);
+        [data-testid="stHeader"] {{
+            background-color: rgba(0, 0, 0, 0);
         }}
 
-        /* Konten utama diletakkan di atas kartu semi-transparan agar teks & rumus tetap
-           mudah dibaca, sementara foto di sekitarnya tetap terlihat penuh */
-        .block-container {{
-            background-color: rgba(255, 255, 255, 0.88);
+        /* Sidebar dibuat solid + teksnya dipaksa gelap agar menu navigasi tetap jelas */
+        section[data-testid="stSidebar"] {{
+            background-color: rgba(255, 255, 255, 0.98) !important;
+        }}
+        section[data-testid="stSidebar"] * {{
+            color: #1a1a1a !important;
+        }}
+
+        /* Konten utama dibungkus kartu solid supaya teks & rumus kontras tinggi,
+           sementara foto tetap terlihat penuh di area luar kartu */
+        div[data-testid="stAppViewContainer"] .main .block-container {{
+            background-color: rgba(255, 255, 255, 0.96) !important;
             border-radius: 18px;
-            padding: 2rem 2.5rem 3rem 2.5rem;
-            margin-top: 1.5rem;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem 2.5rem 3rem 2.5rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.18);
+        }}
+        div[data-testid="stAppViewContainer"] .main .block-container * {{
+            color: #1a1a1a !important;
         }}
         </style>
         """,
