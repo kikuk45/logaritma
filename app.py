@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# CUSTOM CSS - TEMA KARTUN PENDIDIKAN & PAKSA LIGHT MODE
+# CUSTOM CSS TUNGGAL - PAKSA LIGHT MODE & GAYA KARTUN EDUKASI
 # -----------------------------------------------------------------------------
 st.markdown("""
 
