@@ -2,6 +2,7 @@ from decimal import Decimal
 from fractions import Fraction
 import math
 import base64
+from pathlib import Path
 import streamlit as st
 
 # -----------------------------------------------------------------------------
@@ -15,19 +16,23 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# FUNGSI UNTUK MEMUAT BACKGROUND LOKAL (BASE64)
+# FUNGSI UNTUK MEMUAT BACKGROUND LOKAL (BASE64 DENGAN PATH AMAN)
 # -----------------------------------------------------------------------------
 def set_background(image_file):
-    try:
-        with open(image_file, "rb") as f:
+    # Mengambil jalur absolut berdasarkan letak file app.py
+    current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
+    img_path = current_dir / image_file
+    
+    if img_path.exists():
+        with open(img_path, "rb") as f:
             encoded_string = base64.b64encode(f.read()).decode()
         
         css = f"""
         
         """
         st.markdown(css, unsafe_allow_html=True)
-    except FileNotFoundError:
-        st.warning(f"File gambar background '{image_file}' tidak ditemukan di direktori proyek!")
+    else:
+        st.warning(f"⚠️ File gambar background '{image_file}' tidak ditemukan di direktori: {current_dir.absolute()}")
 
 # Panggil fungsi background
 set_background("bg_siswa.png")
