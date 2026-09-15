@@ -76,7 +76,7 @@ if selected_key == "Definisi Logaritma":
         st.latex(rf"{a_1}^{{{n_1}}} = {x_1}")
         
         st.write("**Bentuk Logaritma:**")
-        st.latex(rf"^{{{a_1}}}\log({{{x_1}}}) = {n_1}")
+        st.latex(rf"^{a_1}\log {x_1} = {n_1}")
 
     with col2:
         st.subheader("B. Logaritma ➔ Perpangkatan")
@@ -89,7 +89,7 @@ if selected_key == "Definisi Logaritma":
             n_2 = int(math.log(x_2, a_2))
             st.divider()
             st.write("**Bentuk Logaritma:**")
-            st.latex(rf"^{{{a_2}}}\log({{{x_2}}}) = {n_2}")
+            st.latex(rf"^{a_2}\log {x_2} = {n_2}")
             
             st.write("**Bentuk Pangkat:**")
             st.latex(rf"{a_2}^{{{n_2}}} = {x_2}")
@@ -100,7 +100,7 @@ if selected_key == "Definisi Logaritma":
 # MENU 2: SIFAT DASAR (POIN A)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat A":
-    st.header("a. Untuk \(a > 0\) dan \(a \\neq 1\), berlaku:")
+    st.header(r"a. Untuk \(a > 0\) dan \(a \neq 1\), berlaku:")
 
     st.latex(r"^a\log 1 = 0 \quad \text{dan} \quad ^a\log a = 1")
 
@@ -112,20 +112,20 @@ elif selected_key == "Sifat A":
     with col1:
         with st.container(border=True):
             st.subheader("Sifat 1")
-            st.latex(rf"^{{{a_val}}}\log 1 = 0")
+            st.latex(rf"^{a_val}\log 1 = 0")
             st.caption(f"Bukti: {a_val}⁰ = 1")
 
     with col2:
         with st.container(border=True):
             st.subheader("Sifat 2")
-            st.latex(rf"^{{{a_val}}}\log {a_val} = 1")
+            st.latex(rf"^{a_val}\log {a_val} = 1")
             st.caption(f"Bukti: {a_val}¹ = {a_val}")
 
 # -----------------------------------------------------------------------------
 # MENU 3: SIFAT PANGKAT NUMERUS (POIN B)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat B":
-    st.header("b. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, n, x \\in \\mathbb{R}\), berlaku:")
+    st.header(r"b. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, n, x \in \mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x^n = n \cdot {}^a\log x")
 
@@ -148,19 +148,19 @@ elif selected_key == "Sifat B":
     hasil_akhir = n_pangkat * val_base_log
 
     st.write("1. Bentuk Soal Sesuai Sifat:")
-    st.latex(rf"^{{{a_s3}}}\log({x_base}^{{{n_pangkat}}}) = {n_pangkat} \cdot ^{{{a_s3}}}\log({x_base})")
+    st.latex(rf"^{a_s3}\log ({x_base}^{{{n_pangkat}}}) = {n_pangkat} \cdot ^{a_s3}\log {x_base}")
     
     st.write("2. Substitusi Hasil:")
     st.latex(rf"= {n_pangkat} \cdot {val_base_log}")
 
     st.write("3. Hasil Akhir:")
-    st.latex(rf"^{{{a_s3}}}\log({numerus_total}) = {hasil_akhir}")
+    st.latex(rf"^{a_s3}\log {numerus_total} = {hasil_akhir}")
 
 # -----------------------------------------------------------------------------
 # MENU 4: SIFAT PANGKAT BASIS & NUMERUS (POIN C)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat C":
-    st.header("c. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, m, n, x \\in \\mathbb{R}\), berlaku:")
+    st.header(r"c. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, m, n, x \in \mathbb{R}\), berlaku:")
 
     st.latex(r"^{a^n}\log x^m = \frac{m}{n} \cdot {}^a\log x")
 
@@ -192,19 +192,19 @@ elif selected_key == "Sifat C":
         hasil_latex = f"\\frac{{{pembagi_frac.numerator}}}{{{pembagi_frac.denominator}}}"
 
     st.write("1. Bentuk Soal Disederhanakan:")
-    st.latex(rf"^{{{basis_total}}}\log({numerus_total}) \implies ^{{{a_base}^{{{n_exp}}}}}\log({x_base}^{{{m_exp}}})")
+    st.latex(rf"^{basis_total}\log {numerus_total} \implies ^{{{a_base}^{{{n_exp}}}}}\log ({x_base}^{{{m_exp}}})")
     
     st.write("2. Gunakan Rumus Sifat:")
-    st.latex(rf"\frac{{{m_exp}}}{{{n_exp}}} \cdot ^{{{a_base}}}\log({x_base}) = \frac{{{m_exp}}}{{{n_exp}}} \cdot {base_log}")
+    st.latex(rf"\frac{{{m_exp}}}{{{n_exp}}} \cdot ^{a_base}\log {x_base} = \frac{{{m_exp}}}{{{n_exp}}} \cdot {base_log}")
 
     st.write("3. Hasil Akhir:")
-    st.latex(rf"^{{{basis_total}}}\log({numerus_total}) = {hasil_latex}")
+    st.latex(rf"^{basis_total}\log {numerus_total} = {hasil_latex}")
 
 # -----------------------------------------------------------------------------
 # MENU 5: PENJUMLAHAN LOGARITMA (POIN D)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat D":
-    st.header("d. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
+    st.header(r"d. Untuk \(a > 0, a \neq 1, x > 0, y > 0\) dan \(a, x, y \in \mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x + {}^a\log y = {}^a\log(x \cdot y)")
 
@@ -224,10 +224,10 @@ elif selected_key == "Sifat D":
     st.subheader("📋 Langkah Penyelesaian:")
 
     st.write("1. Gabungkan Numerus (Perkalian):")
-    st.latex(rf"^{{{a_d}}}\log({x_d}) + ^{{{a_d}}}\log({y_d}) = ^{{{a_d}}}\log({x_d} \cdot {y_d})")
+    st.latex(rf"^{a_d}\log {x_d} + ^{a_d}\log {y_d} = ^{a_d}\log ({x_d} \cdot {y_d})")
 
     st.write("2. Hasil Perkalian Numerus:")
-    st.latex(rf"= ^{{{a_d}}}\log({xy_prod})")
+    st.latex(rf"= ^{a_d}\log {xy_prod}")
 
     try:
         val_res = math.log(xy_prod, a_d)
@@ -241,7 +241,7 @@ elif selected_key == "Sifat D":
 # MENU 6: PENGURANGAN LOGARITMA (POIN E)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat E":
-    st.header("e. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
+    st.header(r"e. Untuk \(a > 0, a \neq 1, x > 0, y > 0\) dan \(a, x, y \in \mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x - {}^a\log y = {}^a\log\left(\frac{x}{y}\right)")
 
@@ -259,7 +259,7 @@ elif selected_key == "Sifat E":
     st.subheader("📋 Langkah Penyelesaian:")
 
     st.write("1. Gabungkan Numerus (Pembagian):")
-    st.latex(rf"^{{{a_e}}}\log({x_e}) - ^{{{a_e}}}\log({y_e}) = ^{{{a_e}}}\log\left(\frac{{{x_e}}}{{{y_e}}}\right)")
+    st.latex(rf"^{a_e}\log {x_e} - ^{a_e}\log {y_e} = ^{a_e}\log \left(\frac{{{x_e}}}{{{y_e}}}\right)")
 
     div_frac = Fraction(x_e, y_e)
     if div_frac.denominator == 1:
@@ -268,7 +268,7 @@ elif selected_key == "Sifat E":
         xy_div_str = f"\\frac{{{div_frac.numerator}}}{{{div_frac.denominator}}}"
 
     st.write("2. Hasil Pembagian Numerus:")
-    st.latex(rf"= ^{{{a_e}}}\log\left({xy_div_str}\right)")
+    st.latex(rf"= ^{a_e}\log \left({xy_div_str}\right)")
 
     try:
         val_res = math.log(x_e / y_e, a_e)
@@ -282,7 +282,7 @@ elif selected_key == "Sifat E":
 # MENU 7: PERKALIAN LOGARITMA (POIN F)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat F":
-    st.header("f. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
+    st.header(r"f. Untuk \(a > 0, a \neq 1, x > 0, y > 0\) dan \(a, x, y \in \mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x \cdot {}^x\log y = {}^a\log y")
 
@@ -300,10 +300,10 @@ elif selected_key == "Sifat F":
     st.subheader("📋 Langkah Penyelesaian:")
 
     st.write("1. Bentuk Perkalian Logaritma Berantai:")
-    st.latex(rf"^{{{a_f}}}\log({x_f}) \cdot ^{{{x_f}}}\log({y_f})")
+    st.latex(rf"^{a_f}\log {x_f} \cdot ^{x_f}\log {y_f}")
 
     st.write("2. Penyederhanaan (Menghilangkan Basis & Numerus x yang Sama):")
-    st.latex(rf"= ^{{{a_f}}}\log({y_f})")
+    st.latex(rf"= ^{a_f}\log {y_f}")
 
     try:
         val_res = math.log(y_f, a_f)
@@ -317,7 +317,7 @@ elif selected_key == "Sifat F":
 # MENU 8: MENGUBAH BASIS LOGARITMA (POIN G)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat G":
-    st.header("g. Untuk \(a > 0, a \\neq 1, b > 0, b \\neq 1, x > 0\) dan \(a, b, x \\in \\mathbb{R}\), berlaku:")
+    st.header(r"g. Untuk \(a > 0, a \neq 1, b > 0, b \neq 1, x > 0\) dan \(a, b, x \in \mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x = \frac{{}^b\log x}{{}^b\log a} = \frac{1}{{}^x\log a}")
 
@@ -331,7 +331,7 @@ elif selected_key == "Sifat G":
         b_g = st.number_input("Basis Baru (b):", value=2, step=1, min_value=2, key="b_g")
 
         st.write("**Proses Ubah Basis:**")
-        st.latex(rf"^{{{a_g}}}\log({x_g}) = \frac{{^{{{b_g}}}\log({x_g})}}{{^{{{b_g}}}\log({a_g})}}")
+        st.latex(rf"^{a_g}\log {x_g} = \frac{{^{b_g}\log {x_g}}}{{^{b_g}\log {a_g}}}")
 
         try:
             log_bx = math.log(x_g, b_g)
@@ -351,13 +351,13 @@ elif selected_key == "Sifat G":
     with col2:
         st.subheader("B. Kebalikan Basis & Numerus")
         st.write("**Bentuk Sifat:**")
-        st.latex(rf"^{{{a_g}}}\log({x_g}) = \frac{{1}}{{^{{{x_g}}}\log({a_g})}}")
+        st.latex(rf"^{a_g}\log {x_g} = \frac{{1}}{{^{x_g}\log {a_g}}}")
 
 # -----------------------------------------------------------------------------
 # MENU 9: PANGKAT DENGAN EKSPLISIT LOGARITMA (POIN H)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat H":
-    st.header("h. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, x \\in \\mathbb{R}\), berlaku:")
+    st.header(r"h. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, x \in \mathbb{R}\), berlaku:")
 
     st.latex(r"a^{{}^a\log x} = x")
 
@@ -373,7 +373,7 @@ elif selected_key == "Sifat H":
     st.subheader("📋 Langkah Penyelesaian:")
 
     st.write("1. Bentuk Pangkat Logaritma:")
-    st.latex(rf"{a_h}^{{^{{{a_h}}}\log({x_h})}}")
+    st.latex(rf"{a_h}^{{^{a_h}\log {x_h}}}")
 
     st.write("2. Berdasarkan Sifat (Basis Pangkat == Basis Logaritma):")
     st.latex(rf"= {x_h}")
@@ -382,7 +382,7 @@ elif selected_key == "Sifat H":
 # MENU 10: PANGKAT DENGAN KOEFISIEN LOGARITMA (POIN I)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat I":
-    st.header("i. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, x, n \\in \\mathbb{R}\), berlaku:")
+    st.header(r"i. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, x, n \in \mathbb{R}\), berlaku:")
 
     st.latex(r"a^{n \cdot {}^a\log x} = x^n")
 
@@ -402,10 +402,10 @@ elif selected_key == "Sifat I":
     st.subheader("📋 Langkah Penyelesaian:")
 
     st.write("1. Bentuk Soal Sesuai Sifat:")
-    st.latex(rf"{a_i}^{{{n_i} \cdot ^{{{a_i}}}\log({x_i})}}")
+    st.latex(rf"{a_i}^{{{n_i} \cdot ^{a_i}\log {x_i}}}")
 
     st.write("2. Pindahkan Koefisien Menjadi Pangkat Numerus:")
-    st.latex(rf"= {a_i}^{{^{{{a_i}}}\log({x_i}^{{{n_i}}})}}")
+    st.latex(rf"= {a_i}^{{^{a_i}\log ({x_i}^{{{n_i}}})}}")
 
     st.write("3. Hasil Akhir:")
     st.latex(rf"= {x_i}^{{{n_i}}} = {hasil_i}")
