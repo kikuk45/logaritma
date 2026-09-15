@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# CUSTOM CSS TUNGGAL - PAKSA LIGHT MODE & GAYA KARTUN EDUKASI
+# CUSTOM CSS TUNGGAL - 1 KOLOM & GAYA KARTUN EDUKASI
 # -----------------------------------------------------------------------------
 st.markdown("""
 
@@ -52,12 +52,11 @@ selected_key = st.sidebar.radio(
 )
 
 # -----------------------------------------------------------------------------
-# MENU 1: DEFINISI LOGARITMA
+# MENU 1: DEFINISI LOGARITMA (1 Kolom ke Bawah)
 # -----------------------------------------------------------------------------
 if selected_key == "Definisi Logaritma":
     st.header("📘 Definisi Logaritma")
     st.write("Bentuk umum logaritma adalah:")
-
     st.latex(r"^a\log x = n \iff a^n = x")
 
     st.write("**Keterangan:**")
@@ -67,43 +66,40 @@ if selected_key == "Definisi Logaritma":
 
     st.divider()
 
-    col1, col2 = st.columns(2)
+    # Bagian A: Perpangkatan ke Logaritma
+    with st.container():
+        st.subheader("A. Perpangkatan ➔ Logaritma")
+        st.caption("Ubah bentuk perpangkatan menjadi logaritma")
 
-    with col1:
-        with st.container():
-            st.subheader("A. Perpangkatan ➔ Logaritma")
-            st.caption("Ubah bentuk perpangkatan menjadi logaritma")
+        a_1 = st.number_input("Basis (a):", value=2, step=1, key="a_1")
+        n_1 = st.number_input("Pangkat (n):", value=3, step=1, key="n_1")
+        x_1 = int(math.pow(a_1, n_1)) if a_1 != 0 else 0
 
-            a_1 = st.number_input("Basis (a):", value=2, step=1, key="a_1")
-            n_1 = st.number_input("Pangkat (n):", value=3, step=1, key="n_1")
+        st.divider()
+        st.write("**Bentuk Pangkat:**")
+        st.latex(rf"{a_1}^{{{n_1}}} = {x_1}")
+        
+        st.write("**Bentuk Logaritma:**")
+        st.latex(rf"^{a_1}\log {x_1} = {n_1}")
 
-            x_1 = int(math.pow(a_1, n_1)) if a_1 != 0 else 0
+    # Bagian B: Logaritma ke Perpangkatan
+    with st.container():
+        st.subheader("B. Logaritma ➔ Perpangkatan")
+        st.caption("Ubah bentuk logaritma menjadi perpangkatan")
 
+        a_2 = st.number_input("Basis Log (a):", value=3, step=1, min_value=2, key="a_2")
+        x_2 = st.number_input("Numerus (x):", value=81, step=1, min_value=1, key="x_2")
+
+        try:
+            n_2 = int(math.log(x_2, a_2))
             st.divider()
-            st.write("**Bentuk Pangkat:**")
-            st.latex(rf"{a_1}^{{{n_1}}} = {x_1}")
-            
             st.write("**Bentuk Logaritma:**")
-            st.latex(rf"^{a_1}\log {x_1} = {n_1}")
-
-    with col2:
-        with st.container():
-            st.subheader("B. Logaritma ➔ Perpangkatan")
-            st.caption("Ubah bentuk logaritma menjadi perpangkatan")
-
-            a_2 = st.number_input("Basis Log (a):", value=3, step=1, min_value=2, key="a_2")
-            x_2 = st.number_input("Numerus (x):", value=81, step=1, min_value=1, key="x_2")
-
-            try:
-                n_2 = int(math.log(x_2, a_2))
-                st.divider()
-                st.write("**Bentuk Logaritma:**")
-                st.latex(rf"^{a_2}\log {x_2} = {n_2}")
-                
-                st.write("**Bentuk Pangkat:**")
-                st.latex(rf"{a_2}^{{{n_2}}} = {x_2}")
-            except ValueError:
-                st.error("Masukkan nilai numerus dan basis yang valid!")
+            st.latex(rf"^{a_2}\log {x_2} = {n_2}")
+            
+            st.write("**Bentuk Pangkat:**")
+            st.latex(rf"{a_2}^{{{n_2}}} = {x_2}")
+        except ValueError:
+            st.error("Masukkan nilai numerus dan basis yang valid!")
 
 # -----------------------------------------------------------------------------
 # MENU 2: SIFAT DASAR (POIN A)
@@ -116,19 +112,15 @@ elif selected_key == "Sifat A":
     st.divider()
     a_val = st.number_input("Masukkan Nilai Basis (a):", value=5, step=1, min_value=2)
 
-    col1, col2 = st.columns(2)
+    with st.container():
+        st.subheader("Sifat 1: ^a\\log 1 = 0")
+        st.latex(rf"^{a_val}\log 1 = 0")
+        st.caption(f"Bukti: {a_val}⁰ = 1")
 
-    with col1:
-        with st.container():
-            st.subheader("Sifat 1")
-            st.latex(rf"^{a_val}\log 1 = 0")
-            st.caption(f"Bukti: {a_val}⁰ = 1")
-
-    with col2:
-        with st.container():
-            st.subheader("Sifat 2")
-            st.latex(rf"^{a_val}\log {a_val} = 1")
-            st.caption(f"Bukti: {a_val}¹ = {a_val}")
+    with st.container():
+        st.subheader("Sifat 2: ^a\\log a = 1")
+        st.latex(rf"^{a_val}\log {a_val} = 1")
+        st.caption(f"Bukti: {a_val}¹ = {a_val}")
 
 # -----------------------------------------------------------------------------
 # MENU 3: SIFAT PANGKAT NUMERUS (POIN B)
@@ -139,21 +131,15 @@ elif selected_key == "Sifat B":
     st.latex(r"^a\log x^n = n \cdot {}^a\log x")
 
     st.divider()
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        a_s3 = st.number_input("Basis (a):", value=2, step=1, min_value=2, key="a_s3")
-    with col2:
-        x_base = st.number_input("Nilai dasar x:", value=2, step=1, min_value=1, key="x_s3")
-    with col3:
-        n_pangkat = st.number_input("Pangkat Numerus (n):", value=4, step=1, key="n_s3")
+    a_s3 = st.number_input("Basis (a):", value=2, step=1, min_value=2, key="a_s3")
+    x_base = st.number_input("Nilai dasar x:", value=2, step=1, min_value=1, key="x_s3")
+    n_pangkat = st.number_input("Pangkat Numerus (n):", value=4, step=1, key="n_s3")
 
     numerus_total = int(math.pow(x_base, n_pangkat))
 
     st.divider()
     with st.container():
         st.subheader("📋 Langkah Penyelesaian:")
-
         val_base_log = int(math.log(x_base, a_s3))
         hasil_akhir = n_pangkat * val_base_log
 
@@ -175,19 +161,15 @@ elif selected_key == "Sifat C":
     st.latex(r"^{a^n}\log x^m = \frac{m}{n} \cdot {}^a\log x")
 
     st.divider()
-    col1, col2 = st.columns(2)
+    with st.container():
+        st.subheader("Input Basis (aⁿ)")
+        a_base = st.number_input("Basis Utama (a):", value=2, step=1, min_value=2, key="a_base_s4")
+        n_exp = st.number_input("Pangkat Basis (n):", value=2, step=1, min_value=1, key="n_exp_s4")
 
-    with col1:
-        with st.container():
-            st.subheader("Input Basis (aⁿ)")
-            a_base = st.number_input("Basis Utama (a):", value=2, step=1, min_value=2, key="a_base_s4")
-            n_exp = st.number_input("Pangkat Basis (n):", value=2, step=1, min_value=1, key="n_exp_s4")
-
-    with col2:
-        with st.container():
-            st.subheader("Input Numerus (xᵐ)")
-            x_base = st.number_input("Numerus Utama (x):", value=2, step=1, min_value=1, key="x_base_s4")
-            m_exp = st.number_input("Pangkat Numerus (m):", value=3, step=1, key="m_exp_s4")
+    with st.container():
+        st.subheader("Input Numerus (xᵐ)")
+        x_base = st.number_input("Numerus Utama (x):", value=2, step=1, min_value=1, key="x_base_s4")
+        m_exp = st.number_input("Pangkat Numerus (m):", value=3, step=1, key="m_exp_s4")
 
     basis_total = int(math.pow(a_base, n_exp))
     numerus_total = int(math.pow(x_base, m_exp))
@@ -195,7 +177,6 @@ elif selected_key == "Sifat C":
     st.divider()
     with st.container():
         st.subheader("📋 Langkah Penyelesaian:")
-
         base_log = int(math.log(x_base, a_base))
         pembagi_frac = Fraction(m_exp, n_exp) * base_log
 
@@ -222,21 +203,15 @@ elif selected_key == "Sifat D":
     st.latex(r"^a\log x + {}^a\log y = {}^a\log(x \cdot y)")
 
     st.divider()
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        a_d = st.number_input("Basis (a):", value=2, step=1, min_value=2, key="a_d")
-    with col2:
-        x_d = st.number_input("Numerus Pertama (x):", value=2, step=1, min_value=1, key="x_d")
-    with col3:
-        y_d = st.number_input("Numerus Kedua (y):", value=16, step=1, min_value=1, key="y_d")
+    a_d = st.number_input("Basis (a):", value=2, step=1, min_value=2, key="a_d")
+    x_d = st.number_input("Numerus Pertama (x):", value=2, step=1, min_value=1, key="x_d")
+    y_d = st.number_input("Numerus Kedua (y):", value=16, step=1, min_value=1, key="y_d")
 
     xy_prod = x_d * y_d
 
     st.divider()
     with st.container():
         st.subheader("📋 Langkah Penyelesaian:")
-
         st.write("1. Gabungkan Numerus (Perkalian):")
         st.latex(rf"^{a_d}\log {x_d} + ^{a_d}\log {y_d} = ^{a_d}\log ({x_d} \cdot {y_d})")
 
@@ -260,19 +235,13 @@ elif selected_key == "Sifat E":
     st.latex(r"^a\log x - {}^a\log y = {}^a\log\left(\frac{x}{y}\right)")
 
     st.divider()
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        a_e = st.number_input("Basis (a):", value=2, step=1, min_value=2, key="a_e")
-    with col2:
-        x_e = st.number_input("Numerus Pertama (x):", value=32, step=1, min_value=1, key="x_e")
-    with col3:
-        y_e = st.number_input("Numerus Kedua (y):", value=2, step=1, min_value=1, key="y_e")
+    a_e = st.number_input("Basis (a):", value=2, step=1, min_value=2, key="a_e")
+    x_e = st.number_input("Numerus Pertama (x):", value=32, step=1, min_value=1, key="x_e")
+    y_e = st.number_input("Numerus Kedua (y):", value=2, step=1, min_value=1, key="y_e")
 
     st.divider()
     with st.container():
         st.subheader("📋 Langkah Penyelesaian:")
-
         st.write("1. Gabungkan Numerus (Pembagian):")
         st.latex(rf"^{a_e}\log {x_e} - ^{a_e}\log {y_e} = ^{a_e}\log \left(\frac{{{x_e}}}{{{y_e}}}\right)")
 
@@ -302,19 +271,13 @@ elif selected_key == "Sifat F":
     st.latex(r"^a\log x \cdot {}^x\log y = {}^a\log y")
 
     st.divider()
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        a_f = st.number_input("Basis Pertama (a):", value=2, step=1, min_value=2, key="a_f")
-    with col2:
-        x_f = st.number_input("Numerus 1 / Basis 2 (x):", value=3, step=1, min_value=2, key="x_f")
-    with col3:
-        y_f = st.number_input("Numerus Kedua (y):", value=16, step=1, min_value=1, key="y_f")
+    a_f = st.number_input("Basis Pertama (a):", value=2, step=1, min_value=2, key="a_f")
+    x_f = st.number_input("Numerus 1 / Basis 2 (x):", value=3, step=1, min_value=2, key="x_f")
+    y_f = st.number_input("Numerus Kedua (y):", value=16, step=1, min_value=1, key="y_f")
 
     st.divider()
     with st.container():
         st.subheader("📋 Langkah Penyelesaian:")
-
         st.write("1. Bentuk Perkalian Logaritma Berantai:")
         st.latex(rf"^{a_f}\log {x_f} \cdot ^{x_f}\log {y_f}")
 
@@ -338,38 +301,34 @@ elif selected_key == "Sifat G":
     st.latex(r"^a\log x = \frac{{}^b\log x}{{}^b\log a} = \frac{1}{{}^x\log a}")
 
     st.divider()
-    col1, col2 = st.columns(2)
+    with st.container():
+        st.subheader("A. Mengubah Basis ke-b")
+        a_g = st.number_input("Basis Awal (a):", value=4, step=1, min_value=2, key="a_g")
+        x_g = st.number_input("Numerus (x):", value=8, step=1, min_value=2, key="x_g")
+        b_g = st.number_input("Basis Baru (b):", value=2, step=1, min_value=2, key="b_g")
 
-    with col1:
-        with st.container():
-            st.subheader("A. Mengubah Basis ke-b")
-            a_g = st.number_input("Basis Awal (a):", value=4, step=1, min_value=2, key="a_g")
-            x_g = st.number_input("Numerus (x):", value=8, step=1, min_value=2, key="x_g")
-            b_g = st.number_input("Basis Baru (b):", value=2, step=1, min_value=2, key="b_g")
+        st.write("**Proses Ubah Basis:**")
+        st.latex(rf"^{a_g}\log {x_g} = \frac{{^{b_g}\log {x_g}}}{{^{b_g}\log {a_g}}}")
 
-            st.write("**Proses Ubah Basis:**")
-            st.latex(rf"^{a_g}\log {x_g} = \frac{{^{b_g}\log {x_g}}}{{^{b_g}\log {a_g}}}")
+        try:
+            log_bx = math.log(x_g, b_g)
+            log_ba = math.log(a_g, b_g)
+            frac_res = Fraction(Decimal(str(log_bx / log_ba))).limit_denominator() if not (log_bx/log_ba).is_integer() else int(log_bx/log_ba)
+            
+            if isinstance(frac_res, Fraction):
+                res_str = f"\\frac{{{frac_res.numerator}}}{{{frac_res.denominator}}}"
+            else:
+                res_str = f"{frac_res}"
 
-            try:
-                log_bx = math.log(x_g, b_g)
-                log_ba = math.log(a_g, b_g)
-                frac_res = Fraction(Decimal(str(log_bx / log_ba))).limit_denominator() if not (log_bx/log_ba).is_integer() else int(log_bx/log_ba)
-                
-                if isinstance(frac_res, Fraction):
-                    res_str = f"\\frac{{{frac_res.numerator}}}{{{frac_res.denominator}}}"
-                else:
-                    res_str = f"{frac_res}"
+            st.write("**Hasil Akhir:**")
+            st.latex(rf"= \frac{{{int(log_bx) if log_bx.is_integer() else round(log_bx, 2)}}}{{{int(log_ba) if log_ba.is_integer() else round(log_ba, 2)}}} = {res_str}")
+        except Exception:
+            pass
 
-                st.write("**Hasil Akhir:**")
-                st.latex(rf"= \frac{{{int(log_bx) if log_bx.is_integer() else round(log_bx, 2)}}}{{{int(log_ba) if log_ba.is_integer() else round(log_ba, 2)}}} = {res_str}")
-            except Exception:
-                pass
-
-    with col2:
-        with st.container():
-            st.subheader("B. Kebalikan Basis & Numerus")
-            st.write("**Bentuk Sifat:**")
-            st.latex(rf"^{a_g}\log {x_g} = \frac{{1}}{{^{x_g}\log {a_g}}}")
+    with st.container():
+        st.subheader("B. Kebalikan Basis & Numerus")
+        st.write("**Bentuk Sifat:**")
+        st.latex(rf"^{a_g}\log {x_g} = \frac{{1}}{{^{x_g}\log {a_g}}}")
 
 # -----------------------------------------------------------------------------
 # MENU 9: PANGKAT DENGAN EKSPLISIT LOGARITMA (POIN H)
@@ -380,17 +339,12 @@ elif selected_key == "Sifat H":
     st.latex(r"a^{{}^a\log x} = x")
 
     st.divider()
-    col1, col2 = st.columns(2)
-
-    with col1:
-        a_h = st.number_input("Basis Utama / Basis Logaritma (a):", value=2, step=1, min_value=2, key="a_h")
-    with col2:
-        x_h = st.number_input("Numerus / Hasil (x):", value=7, step=1, min_value=1, key="x_h")
+    a_h = st.number_input("Basis Utama / Basis Logaritma (a):", value=2, step=1, min_value=2, key="a_h")
+    x_h = st.number_input("Numerus / Hasil (x):", value=7, step=1, min_value=1, key="x_h")
 
     st.divider()
     with st.container():
         st.subheader("📋 Langkah Penyelesaian:")
-
         st.write("1. Bentuk Pangkat Logaritma:")
         st.latex(rf"{a_h}^{{^{a_h}\log {x_h}}}")
 
@@ -406,21 +360,15 @@ elif selected_key == "Sifat I":
     st.latex(r"a^{n \cdot {}^a\log x} = x^n")
 
     st.divider()
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        a_i = st.number_input("Basis Utama / Basis Log (a):", value=3, step=1, min_value=2, key="a_i")
-    with col2:
-        n_i = st.number_input("Koefisien Pangkat (n):", value=2, step=1, key="n_i")
-    with col3:
-        x_i = st.number_input("Numerus Logaritma (x):", value=5, step=1, min_value=1, key="x_i")
+    a_i = st.number_input("Basis Utama / Basis Log (a):", value=3, step=1, min_value=2, key="a_i")
+    n_i = st.number_input("Koefisien Pangkat (n):", value=2, step=1, key="n_i")
+    x_i = st.number_input("Numerus Logaritma (x):", value=5, step=1, min_value=1, key="x_i")
 
     hasil_i = int(math.pow(x_i, n_i))
 
     st.divider()
     with st.container():
         st.subheader("📋 Langkah Penyelesaian:")
-
         st.write("1. Bentuk Soal Sesuai Sifat:")
         st.latex(rf"{a_i}^{{{n_i} \cdot ^{a_i}\log {x_i}}}")
 
