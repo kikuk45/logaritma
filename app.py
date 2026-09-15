@@ -22,9 +22,9 @@ menu = st.sidebar.radio(
     "Navigasi Modul:",
     [
         "1. Definisi Logaritma",
-        "2. Sifat Dasar",
-        "3. Sifat Pangkat Numerus",
-        "4. Sifat Pangkat Basis & Numerus",
+        "a. Untuk a > 0 dan a ≠ 1, berlaku:",
+        "b. Untuk a > 0, a ≠ 1, x > 0 dan a, n, x ∈ R, berlaku:",
+        "c. Untuk a > 0, a ≠ 1, x > 0 dan a, m, n, x ∈ R, berlaku:",
     ],
 )
 
@@ -81,14 +81,11 @@ if menu == "1. Definisi Logaritma":
             st.error("Masukkan nilai numerus dan basis yang valid!")
 
 # -----------------------------------------------------------------------------
-# MENU 2: SIFAT DASAR
+# MENU 2: SIFAT DASAR (POIN A)
 # -----------------------------------------------------------------------------
-elif menu == "2. Sifat Dasar":
-    st.header("2. Sifat-sifat Logaritma")
-    st.write("Untuk basis logaritma yang memenuhi syarat:")
-    st.latex(r"a > 0 \quad \text{dan} \quad a \neq 1")
+elif menu == "a. Untuk a > 0 dan a ≠ 1, berlaku:":
+    st.header("a. Untuk a > 0 dan a ≠ 1, berlaku:")
 
-    st.write("Berlaku sifat dasar:")
     st.latex(r"^a\log 1 = 0 \quad \text{dan} \quad ^a\log a = 1")
 
     st.divider()
@@ -98,25 +95,22 @@ elif menu == "2. Sifat Dasar":
 
     with col1:
         with st.container(border=True):
-            st.subheader("Sifat A")
+            st.subheader("Sifat 1")
             st.latex(rf"^{{{a_val}}}\log 1 = 0")
             st.caption(f"Bukti: {a_val}⁰ = 1")
 
     with col2:
         with st.container(border=True):
-            st.subheader("Sifat B")
+            st.subheader("Sifat 2")
             st.latex(rf"^{{{a_val}}}\log {a_val} = 1")
             st.caption(f"Bukti: {a_val}¹ = {a_val}")
 
 # -----------------------------------------------------------------------------
-# MENU 3: SIFAT EKSPONEN NUMERUS
+# MENU 3: SIFAT PANGKAT NUMERUS (POIN B)
 # -----------------------------------------------------------------------------
-elif menu == "3. Sifat Pangkat Numerus":
-    st.header("3. Sifat Pangkat Numerus")
-    st.write("Untuk syarat:")
-    st.latex(r"a > 0, \quad a \neq 1, \quad x > 0, \quad \text{dan } a, n, x \in \mathbb{R}")
+elif menu == "b. Untuk a > 0, a ≠ 1, x > 0 dan a, n, x ∈ R, berlaku:":
+    st.header("b. Untuk a > 0, a ≠ 1, x > 0 dan a, n, x ∈ R, berlaku:")
 
-    st.write("Berlaku rumus:")
     st.latex(r"^a\log x^n = n \cdot {}^a\log x")
 
     st.divider()
@@ -147,14 +141,11 @@ elif menu == "3. Sifat Pangkat Numerus":
     st.latex(rf"^{{{a_s3}}}\log({numerus_total}) = {hasil_akhir}")
 
 # -----------------------------------------------------------------------------
-# MENU 4: SIFAT EKSPONEN BASIS & NUMERUS
+# MENU 4: SIFAT PANGKAT BASIS & NUMERUS (POIN C)
 # -----------------------------------------------------------------------------
-elif menu == "4. Sifat Pangkat Basis & Numerus":
-    st.header("4. Sifat Pangkat Basis dan Numerus")
-    st.write("Untuk syarat:")
-    st.latex(r"a > 0, \quad a \neq 1, \quad x > 0, \quad \text{dan } a, m, n, x \in \mathbb{R}")
+elif menu == "c. Untuk a > 0, a ≠ 1, x > 0 dan a, m, n, x ∈ R, berlaku:":
+    st.header("c. Untuk a > 0, a ≠ 1, x > 0 dan a, m, n, x ∈ R, berlaku:")
 
-    st.write("Berlaku rumus:")
     st.latex(r"^{a^n}\log x^m = \frac{m}{n} \cdot {}^a\log x")
 
     st.divider()
