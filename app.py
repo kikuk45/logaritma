@@ -25,6 +25,12 @@ menu = st.sidebar.radio(
         "a. Untuk a > 0 dan a ≠ 1, berlaku:",
         "b. Untuk a > 0, a ≠ 1, x > 0 dan a, n, x ∈ R, berlaku:",
         "c. Untuk a > 0, a ≠ 1, x > 0 dan a, m, n, x ∈ R, berlaku:",
+        "d. Untuk a > 0, a ≠ 1, x > 0, y > 0 dan a, x, y ∈ R, berlaku:",
+        "e. Untuk a > 0, a ≠ 1, x > 0, y > 0 dan a, x, y ∈ R, berlaku:",
+        "f. Untuk a > 0, a ≠ 1, x > 0, y > 0 dan a, x, y ∈ R, berlaku:",
+        "g. Untuk a > 0, a ≠ 1, b > 0, b ≠ 1, x > 0 dan a, b, x ∈ R, berlaku:",
+        "h. Untuk a > 0, a ≠ 1, x > 0 dan a, x ∈ R, berlaku:",
+        "i. Untuk a > 0, a ≠ 1, x > 0 dan a, x, n ∈ R, berlaku:",
     ],
 )
 
@@ -183,6 +189,216 @@ elif menu == "c. Untuk a > 0, a ≠ 1, x > 0 dan a, m, n, x ∈ R, berlaku:":
 
     st.write("3. Hasil Akhir:")
     st.latex(rf"^{{{basis_total}}}\log({numerus_total}) = {hasil_latex}")
+
+# -----------------------------------------------------------------------------
+# MENU 5: PENJUMLAHAN LOGARITMA (POIN D)
+# -----------------------------------------------------------------------------
+elif menu == "d. Untuk a > 0, a ≠ 1, x > 0, y > 0 dan a, x, y ∈ R, berlaku:":
+    st.header("d. Untuk a > 0, a ≠ 1, x > 0, y > 0 dan a, x, y ∈ R, berlaku:")
+
+    st.latex(r"^a\log x + {}^a\log y = {}^a\log(x \cdot y)")
+
+    st.divider()
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        a_d = st.number_input("Basis (a):", value=2, step=1, min_value=2, key="a_d")
+    with col2:
+        x_d = st.number_input("Numerus Pertama (x):", value=2, step=1, min_value=1, key="x_d")
+    with col3:
+        y_d = st.number_input("Numerus Kedua (y):", value=16, step=1, min_value=1, key="y_d")
+
+    xy_prod = x_d * y_d
+
+    st.divider()
+    st.subheader("📋 Langkah Penyelesaian:")
+
+    st.write("1. Gabungkan Numerus (Perkalian):")
+    st.latex(rf"^{{{a_d}}}\log({x_d}) + ^{{{a_d}}}\log({y_d}) = ^{{{a_d}}}\log({x_d} \cdot {y_d})")
+
+    st.write("2. Hasil Perkalian Numerus:")
+    st.latex(rf"= ^{{{a_d}}}\log({xy_prod})")
+
+    try:
+        val_res = math.log(xy_prod, a_d)
+        if val_res.is_integer():
+            st.write("3. Hasil Akhir:")
+            st.latex(rf"= {int(val_res)}")
+    except ValueError:
+        pass
+
+# -----------------------------------------------------------------------------
+# MENU 6: PENGURANGAN LOGARITMA (POIN E)
+# -----------------------------------------------------------------------------
+elif menu == "e. Untuk a > 0, a ≠ 1, x > 0, y > 0 dan a, x, y ∈ R, berlaku:":
+    st.header("e. Untuk a > 0, a ≠ 1, x > 0, y > 0 dan a, x, y ∈ R, berlaku:")
+
+    st.latex(r"^a\log x - {}^a\log y = {}^a\log\left(\frac{x}{y}\right)")
+
+    st.divider()
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        a_e = st.number_input("Basis (a):", value=2, step=1, min_value=2, key="a_e")
+    with col2:
+        x_e = st.number_input("Numerus Pertama (x):", value=32, step=1, min_value=1, key="x_e")
+    with col3:
+        y_e = st.number_input("Numerus Kedua (y):", value=2, step=1, min_value=1, key="y_e")
+
+    st.divider()
+    st.subheader("📋 Langkah Penyelesaian:")
+
+    st.write("1. Gabungkan Numerus (Pembagian):")
+    st.latex(rf"^{{{a_e}}}\log({x_e}) - ^{{{a_e}}}\log({y_e}) = ^{{{a_e}}}\log\left(\frac{{{x_e}}}{{{y_e}}}\right)")
+
+    div_frac = Fraction(x_e, y_e)
+    if div_frac.denominator == 1:
+        xy_div_str = f"{div_frac.numerator}"
+    else:
+        xy_div_str = f"\\frac{{{div_frac.numerator}}}{{{div_frac.denominator}}}"
+
+    st.write("2. Hasil Pembagian Numerus:")
+    st.latex(rf"= ^{{{a_e}}}\log\left({xy_div_str}\right)")
+
+    try:
+        val_res = math.log(x_e / y_e, a_e)
+        if val_res.is_integer():
+            st.write("3. Hasil Akhir:")
+            st.latex(rf"= {int(val_res)}")
+    except ValueError:
+        pass
+
+# -----------------------------------------------------------------------------
+# MENU 7: PERKALIAN LOGARITMA (POIN F)
+# -----------------------------------------------------------------------------
+elif menu == "f. Untuk a > 0, a ≠ 1, x > 0, y > 0 dan a, x, y ∈ R, berlaku:":
+    st.header("f. Untuk a > 0, a ≠ 1, x > 0, y > 0 dan a, x, y ∈ R, berlaku:")
+
+    st.latex(r"^a\log x \cdot {}^x\log y = {}^a\log y")
+
+    st.divider()
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        a_f = st.number_input("Basis Pertama (a):", value=2, step=1, min_value=2, key="a_f")
+    with col2:
+        x_f = st.number_input("Numerus 1 / Basis 2 (x):", value=3, step=1, min_value=2, key="x_f")
+    with col3:
+        y_f = st.number_input("Numerus Kedua (y):", value=16, step=1, min_value=1, key="y_f")
+
+    st.divider()
+    st.subheader("📋 Langkah Penyelesaian:")
+
+    st.write("1. Bentuk Perkalian Logaritma Berantai:")
+    st.latex(rf"^{{{a_f}}}\log({x_f}) \cdot ^{{{x_f}}}\log({y_f})")
+
+    st.write("2. Penyederhanaan (Menghilangkan Basis & Numerus x yang Sama):")
+    st.latex(rf"= ^{{{a_f}}}\log({y_f})")
+
+    try:
+        val_res = math.log(y_f, a_f)
+        if val_res.is_integer():
+            st.write("3. Hasil Akhir:")
+            st.latex(rf"= {int(val_res)}")
+    except ValueError:
+        pass
+
+# -----------------------------------------------------------------------------
+# MENU 8: MENGUBAH BASIS LOGARITMA (POIN G)
+# -----------------------------------------------------------------------------
+elif menu == "g. Untuk a > 0, a ≠ 1, b > 0, b ≠ 1, x > 0 dan a, b, x ∈ R, berlaku:":
+    st.header("g. Untuk a > 0, a ≠ 1, b > 0, b ≠ 1, x > 0 dan a, b, x ∈ R, berlaku:")
+
+    st.latex(r"^a\log x = \frac{{}^b\log x}{{}^b\log a} = \frac{1}{{}^x\log a}")
+
+    st.divider()
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.subheader("A. Mengubah Basis ke-b")
+        a_g = st.number_input("Basis Awal (a):", value=4, step=1, min_value=2, key="a_g")
+        x_g = st.number_input("Numerus (x):", value=8, step=1, min_value=2, key="x_g")
+        b_g = st.number_input("Basis Baru (b):", value=2, step=1, min_value=2, key="b_g")
+
+        st.write("**Proses Ubah Basis:**")
+        st.latex(rf"^{{{a_g}}}\log({x_g}) = \frac{{^{{{b_g}}}\log({x_g})}}{{^{{{b_g}}}\log({a_g})}}")
+
+        try:
+            log_bx = math.log(x_g, b_g)
+            log_ba = math.log(a_g, b_g)
+            frac_res = Fraction(Decimal(str(log_bx / log_ba))).limit_denominator() if not (log_bx/log_ba).is_integer() else int(log_bx/log_ba)
+            
+            if isinstance(frac_res, Fraction):
+                res_str = f"\\frac{{{frac_res.numerator}}}{{{frac_res.denominator}}}"
+            else:
+                res_str = f"{frac_res}"
+
+            st.write("**Hasil Akhir:**")
+            st.latex(rf"= \frac{{{int(log_bx) if log_bx.is_integer() else round(log_bx, 2)}}}{{{int(log_ba) if log_ba.is_integer() else round(log_ba, 2)}}} = {res_str}")
+        except Exception:
+            pass
+
+    with col2:
+        st.subheader("B. Kebalikan Basis & Numerus")
+        st.write("**Bentuk Sifat:**")
+        st.latex(rf"^{{{a_g}}}\log({x_g}) = \frac{{1}}{{^{{{x_g}}}\log({a_g})}}")
+
+# -----------------------------------------------------------------------------
+# MENU 9: PANGKAT DENGAN EKSPLISIT LOGARITMA (POIN H)
+# -----------------------------------------------------------------------------
+elif menu == "h. Untuk a > 0, a ≠ 1, x > 0 dan a, x ∈ R, berlaku:":
+    st.header("h. Untuk a > 0, a ≠ 1, x > 0 dan a, x ∈ R, berlaku:")
+
+    st.latex(r"a^{{}^a\log x} = x")
+
+    st.divider()
+    col1, col2 = st.columns(2)
+
+    with col1:
+        a_h = st.number_input("Basis Utama / Basis Logaritma (a):", value=2, step=1, min_value=2, key="a_h")
+    with col2:
+        x_h = st.number_input("Numerus / Hasil (x):", value=7, step=1, min_value=1, key="x_h")
+
+    st.divider()
+    st.subheader("📋 Langkah Penyelesaian:")
+
+    st.write("1. Bentuk Pangkat Logaritma:")
+    st.latex(rf"{a_h}^{{^{{{a_h}}}\log({x_h})}}")
+
+    st.write("2. Berdasarkan Sifat (Basis Pangkat == Basis Logaritma):")
+    st.latex(rf"= {x_h}")
+
+# -----------------------------------------------------------------------------
+# MENU 10: PANGKAT DENGAN KOEFISIEN LOGARITMA (POIN I)
+# -----------------------------------------------------------------------------
+elif menu == "i. Untuk a > 0, a ≠ 1, x > 0 dan a, x, n ∈ R, berlaku:":
+    st.header("i. Untuk a > 0, a ≠ 1, x > 0 dan a, x, n ∈ R, berlaku:")
+
+    st.latex(r"a^{n \cdot {}^a\log x} = x^n")
+
+    st.divider()
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        a_i = st.number_input("Basis Utama / Basis Log (a):", value=3, step=1, min_value=2, key="a_i")
+    with col2:
+        n_i = st.number_input("Koefisien Pangkat (n):", value=2, step=1, key="n_i")
+    with col3:
+        x_i = st.number_input("Numerus Logaritma (x):", value=5, step=1, min_value=1, key="x_i")
+
+    hasil_i = int(math.pow(x_i, n_i))
+
+    st.divider()
+    st.subheader("📋 Langkah Penyelesaian:")
+
+    st.write("1. Bentuk Soal Sesuai Sifat:")
+    st.latex(rf"{a_i}^{{{n_i} \cdot ^{{{a_i}}}\log({x_i})}}")
+
+    st.write("2. Pindahkan Koefisien Menjadi Pangkat Numerus:")
+    st.latex(rf"= {a_i}^{{^{{{a_i}}}\log({x_i}^{{{n_i}}})}}")
+
+    st.write("3. Hasil Akhir:")
+    st.latex(rf"= {x_i}^{{{n_i}}} = {hasil_i}")
 
 # -----------------------------------------------------------------------------
 # FOOTER
