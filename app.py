@@ -18,7 +18,7 @@ st.set_page_config(
 # -----------------------------------------------------------------------------
 # Tips: Gunakan link gambar langsung (berakhiran .jpg, .png, atau .webp) 
 # agar latar belakang dapat dimuat dengan sempurna oleh browser.
-background_image_url = "https://share.google/f2QVB1zaOIEjlwI1c"
+background_image_url = "bg siswa.avif"
 
 page_bg_css = f"""
 
