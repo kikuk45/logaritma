@@ -1,7 +1,28 @@
 from decimal import Decimal
 from fractions import Fraction
 import math
+import base64
 import streamlit as st
+
+# -----------------------------------------------------------------------------
+# FUNGSI UNTUK KONVERSI GAMBAR KE BASE64 & SET BACKGROUND
+# -----------------------------------------------------------------------------
+def set_png_as_page_bg(png_file):
+    try:
+        with open(png_file, 'rb') as f:
+            data = f.read()
+        bin_str = base64.b64encode(data).decode()
+        
+        page_bg_img = f"""
+        
+        """
+        st.markdown(page_bg_img, unsafe_allow_html=True)
+    except FileNotFoundError:
+        # Jika file gambar belum ada/tidak sengaja terhapus, aplikasi tetap berjalan normal tanpa background
+        pass
+
+# Panggil fungsi background menggunakan file bg_siswa.png
+set_png_as_page_bg('bg_siswa.png')
 
 # -----------------------------------------------------------------------------
 # KONFIGURASI HALAMAN
