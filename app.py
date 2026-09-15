@@ -69,9 +69,11 @@ menu = st.sidebar.radio(
     "Navigasi Modul:",
     [
         "1. Definisi Logaritma",
-        "2. Sifat Dasar",
-        "3. Sifat Pangkat Numerus",
-        "4. Sifat Pangkat Basis & Numerus",
+        "2. Untuk $a > 0$ dan $a \\neq 1$, berlaku:",
+        "3. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, n, x \\in \\mathbb{R}$,"
+        " berlaku:",
+        "4. Untuk $a > 0, a \\neq 1, x > 0$ dan $a, m, n, x \\in \\mathbb{R}$,"
+        " berlaku:",
     ],
 )
 
