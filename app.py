@@ -14,22 +14,10 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# CUSTOM CSS UNTUK BACKGROUND GAMBAR & TAMPILAN RAPI
-# -----------------------------------------------------------------------------
-st.markdown(
-    """
-    
-    """,
-    unsafe_allow_html=True,
-)
-
-# -----------------------------------------------------------------------------
 # HEADER APLIKASI
 # -----------------------------------------------------------------------------
 st.title("📐 Kalkulator & Learning Media Logaritma")
-st.caption(
-    "Materi sesuai buku cetak Matematika Kelas X (Definisi & Sifat-Sifat Logaritma)"
-)
+st.caption("Materi sesuai buku cetak Matematika Kelas X (Definisi & Sifat-Sifat Logaritma)")
 st.divider()
 
 # -----------------------------------------------------------------------------
@@ -78,9 +66,7 @@ if selected_key == "Definisi Logaritma":
         st.subheader("A. Perpangkatan ➔ Logaritma")
         st.caption("Ubah bentuk perpangkatan menjadi logaritma")
 
-        a_1 = st.number_input(
-            "Basis (a):", value=2, step=1, min_value=2, key="a_1"
-        )
+        a_1 = st.number_input("Basis (a):", value=2, step=1, key="a_1")
         n_1 = st.number_input("Pangkat (n):", value=3, step=1, key="n_1")
 
         x_1 = int(math.pow(a_1, n_1)) if a_1 != 0 else 0
@@ -88,7 +74,7 @@ if selected_key == "Definisi Logaritma":
         st.divider()
         st.write("**Bentuk Pangkat:**")
         st.latex(rf"{a_1}^{{{n_1}}} = {x_1}")
-
+        
         st.write("**Bentuk Logaritma:**")
         st.latex(rf"^{{{a_1}}}\log({{{x_1}}}) = {n_1}")
 
@@ -96,25 +82,17 @@ if selected_key == "Definisi Logaritma":
         st.subheader("B. Logaritma ➔ Perpangkatan")
         st.caption("Ubah bentuk logaritma menjadi perpangkatan")
 
-        a_2 = st.number_input(
-            "Basis Log (a):", value=3, step=1, min_value=2, key="a_2"
-        )
-        x_2 = st.number_input(
-            "Numerus (x):", value=81, step=1, min_value=1, key="x_2"
-        )
+        a_2 = st.number_input("Basis Log (a):", value=3, step=1, min_value=2, key="a_2")
+        x_2 = st.number_input("Numerus (x):", value=81, step=1, min_value=1, key="x_2")
 
         try:
-            n_2 = math.log(x_2, a_2)
-            n_2_display = (
-                int(n_2) if n_2.is_integer() else round(n_2, 4)
-            )
-
+            n_2 = int(math.log(x_2, a_2))
             st.divider()
             st.write("**Bentuk Logaritma:**")
-            st.latex(rf"^{{{a_2}}}\log({{{x_2}}}) = {n_2_display}")
-
+            st.latex(rf"^{{{a_2}}}\log({{{x_2}}}) = {n_2}")
+            
             st.write("**Bentuk Pangkat:**")
-            st.latex(rf"{a_2}^{{{n_2_display}}} = {x_2}")
+            st.latex(rf"{a_2}^{{{n_2}}} = {x_2}")
         except ValueError:
             st.error("Masukkan nilai numerus dan basis yang valid!")
 
@@ -122,14 +100,12 @@ if selected_key == "Definisi Logaritma":
 # MENU 2: SIFAT DASAR (POIN A)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat A":
-    st.header(r"a. Untuk \(a > 0\) dan \(a \neq 1\), berlaku:")
+    st.header("a. Untuk \(a > 0\) dan \(a \\neq 1\), berlaku:")
 
     st.latex(r"^a\log 1 = 0 \quad \text{dan} \quad ^a\log a = 1")
 
     st.divider()
-    a_val = st.number_input(
-        "Masukkan Nilai Basis (a):", value=5, step=1, min_value=2
-    )
+    a_val = st.number_input("Masukkan Nilai Basis (a):", value=5, step=1, min_value=2)
 
     col1, col2 = st.columns(2)
 
@@ -149,9 +125,7 @@ elif selected_key == "Sifat A":
 # MENU 3: SIFAT PANGKAT NUMERUS (POIN B)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat B":
-    st.header(
-        r"b. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, n, x \in \mathbb{R}\), berlaku:"
-    )
+    st.header("b. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, n, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x^n = n \cdot {}^a\log x")
 
@@ -159,58 +133,34 @@ elif selected_key == "Sifat B":
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        a_s3 = st.number_input(
-            "Basis (a):", value=2, step=1, min_value=2, key="a_s3"
-        )
+        a_s3 = st.number_input("Basis (a):", value=2, step=1, min_value=2, key="a_s3")
     with col2:
-        x_base = st.number_input(
-            "Nilai dasar x:", value=2, step=1, min_value=1, key="x_s3"
-        )
+        x_base = st.number_input("Nilai dasar x:", value=2, step=1, min_value=1, key="x_s3")
     with col3:
-        n_pangkat = st.number_input(
-            "Pangkat Numerus (n):", value=4, step=1, key="n_s3"
-        )
+        n_pangkat = st.number_input("Pangkat Numerus (n):", value=4, step=1, key="n_s3")
 
     numerus_total = int(math.pow(x_base, n_pangkat))
 
     st.divider()
     st.subheader("📋 Langkah Penyelesaian:")
 
-    try:
-        val_base_log = math.log(x_base, a_s3)
-        val_display = (
-            int(val_base_log)
-            if val_base_log.is_integer()
-            else round(val_base_log, 2)
-        )
-        hasil_akhir = n_pangkat * val_base_log
-        hasil_display = (
-            int(hasil_akhir)
-            if hasil_akhir.is_integer()
-            else round(hasil_akhir, 2)
-        )
+    val_base_log = int(math.log(x_base, a_s3))
+    hasil_akhir = n_pangkat * val_base_log
 
-        st.write("1. Bentuk Soal Sesuai Sifat:")
-        st.latex(
-            rf"^{{{a_s3}}}\log({x_base}^{{{n_pangkat}}}) = {n_pangkat} \cdot"
-            rf" ^{{{a_s3}}}\log({x_base})"
-        )
+    st.write("1. Bentuk Soal Sesuai Sifat:")
+    st.latex(rf"^{{{a_s3}}}\log({x_base}^{{{n_pangkat}}}) = {n_pangkat} \cdot ^{{{a_s3}}}\log({x_base})")
+    
+    st.write("2. Substitusi Hasil:")
+    st.latex(rf"= {n_pangkat} \cdot {val_base_log}")
 
-        st.write("2. Substitusi Hasil:")
-        st.latex(rf"= {n_pangkat} \cdot {val_display}")
-
-        st.write("3. Hasil Akhir:")
-        st.latex(rf"^{{{a_s3}}}\log({numerus_total}) = {hasil_display}")
-    except ValueError:
-        st.error("Nilai logaritma tidak terdefinisi pada bilangan real.")
+    st.write("3. Hasil Akhir:")
+    st.latex(rf"^{{{a_s3}}}\log({numerus_total}) = {hasil_akhir}")
 
 # -----------------------------------------------------------------------------
 # MENU 4: SIFAT PANGKAT BASIS & NUMERUS (POIN C)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat C":
-    st.header(
-        r"c. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, m, n, x \in \mathbb{R}\), berlaku:"
-    )
+    st.header("c. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, m, n, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^{a^n}\log x^m = \frac{m}{n} \cdot {}^a\log x")
 
@@ -219,21 +169,13 @@ elif selected_key == "Sifat C":
 
     with col1:
         st.subheader("Input Basis (aⁿ)")
-        a_base = st.number_input(
-            "Basis Utama (a):", value=2, step=1, min_value=2, key="a_base_s4"
-        )
-        n_exp = st.number_input(
-            "Pangkat Basis (n):", value=2, step=1, min_value=1, key="n_exp_s4"
-        )
+        a_base = st.number_input("Basis Utama (a):", value=2, step=1, min_value=2, key="a_base_s4")
+        n_exp = st.number_input("Pangkat Basis (n):", value=2, step=1, min_value=1, key="n_exp_s4")
 
     with col2:
         st.subheader("Input Numerus (xᵐ)")
-        x_base = st.number_input(
-            "Numerus Utama (x):", value=2, step=1, min_value=1, key="x_base_s4"
-        )
-        m_exp = st.number_input(
-            "Pangkat Numerus (m):", value=3, step=1, key="m_exp_s4"
-        )
+        x_base = st.number_input("Numerus Utama (x):", value=2, step=1, min_value=1, key="x_base_s4")
+        m_exp = st.number_input("Pangkat Numerus (m):", value=3, step=1, key="m_exp_s4")
 
     basis_total = int(math.pow(a_base, n_exp))
     numerus_total = int(math.pow(x_base, m_exp))
@@ -241,46 +183,28 @@ elif selected_key == "Sifat C":
     st.divider()
     st.subheader("📋 Langkah Penyelesaian:")
 
-    try:
-        base_log = math.log(x_base, a_base)
-        if base_log.is_integer():
-            base_log_val = int(base_log)
-            pembagi_frac = Fraction(m_exp * base_log_val, n_exp)
-            if pembagi_frac.denominator == 1:
-                hasil_latex = f"{pembagi_frac.numerator}"
-            else:
-                hasil_latex = (
-                    f"\\frac{{{pembagi_frac.numerator}}}{{{pembagi_frac.denominator}}}"
-                )
-        else:
-            hasil_val = round((m_exp / n_exp) * base_log, 4)
-            hasil_latex = f"{hasil_val}"
+    base_log = int(math.log(x_base, a_base))
+    pembagi_frac = Fraction(m_exp, n_exp) * base_log
 
-        st.write("1. Bentuk Soal Disederhanakan:")
-        st.latex(
-            rf"^{{{basis_total}}}\log({numerus_total}) \implies"
-            rf" ^{{{a_base}^{{{n_exp}}}}}\log({x_base}^{{{m_exp}}})"
-        )
+    if pembagi_frac.denominator == 1:
+        hasil_latex = f"{pembagi_frac.numerator}"
+    else:
+        hasil_latex = f"\\frac{{{pembagi_frac.numerator}}}{{{pembagi_frac.denominator}}}"
 
-        st.write("2. Gunakan Rumus Sifat:")
-        st.latex(
-            rf"\frac{{{m_exp}}}{{{n_exp}}} \cdot ^{{{a_base}}}\log({x_base}) ="
-            rf" \frac{{{m_exp}}}{{{n_exp}}} \cdot"
-            f" {int(base_log) if base_log.is_integer() else round(base_log, 2)}"
-        )
+    st.write("1. Bentuk Soal Disederhanakan:")
+    st.latex(rf"^{{{basis_total}}}\log({numerus_total}) \implies ^{{{a_base}^{{{n_exp}}}}}\log({x_base}^{{{m_exp}}})")
+    
+    st.write("2. Gunakan Rumus Sifat:")
+    st.latex(rf"\frac{{{m_exp}}}{{{n_exp}}} \cdot ^{{{a_base}}}\log({x_base}) = \frac{{{m_exp}}}{{{n_exp}}} \cdot {base_log}")
 
-        st.write("3. Hasil Akhir:")
-        st.latex(rf"^{{{basis_total}}}\log({numerus_total}) = {hasil_latex}")
-    except ValueError:
-        st.error("Perhitungan tidak valid untuk input ini.")
+    st.write("3. Hasil Akhir:")
+    st.latex(rf"^{{{basis_total}}}\log({numerus_total}) = {hasil_latex}")
 
 # -----------------------------------------------------------------------------
 # MENU 5: PENJUMLAHAN LOGARITMA (POIN D)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat D":
-    st.header(
-        r"d. Untuk \(a > 0, a \neq 1, x > 0, y > 0\) dan \(a, x, y \in \mathbb{R}\), berlaku:"
-    )
+    st.header("d. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x + {}^a\log y = {}^a\log(x \cdot y)")
 
@@ -288,17 +212,11 @@ elif selected_key == "Sifat D":
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        a_d = st.number_input(
-            "Basis (a):", value=2, step=1, min_value=2, key="a_d"
-        )
+        a_d = st.number_input("Basis (a):", value=2, step=1, min_value=2, key="a_d")
     with col2:
-        x_d = st.number_input(
-            "Numerus Pertama (x):", value=2, step=1, min_value=1, key="x_d"
-        )
+        x_d = st.number_input("Numerus Pertama (x):", value=2, step=1, min_value=1, key="x_d")
     with col3:
-        y_d = st.number_input(
-            "Numerus Kedua (y):", value=16, step=1, min_value=1, key="y_d"
-        )
+        y_d = st.number_input("Numerus Kedua (y):", value=16, step=1, min_value=1, key="y_d")
 
     xy_prod = x_d * y_d
 
@@ -306,30 +224,24 @@ elif selected_key == "Sifat D":
     st.subheader("📋 Langkah Penyelesaian:")
 
     st.write("1. Gabungkan Numerus (Perkalian):")
-    st.latex(
-        rf"^{{{a_d}}}\log({x_d}) + ^{{{a_d}}}\log({y_d}) ="
-        rf" ^{{{a_d}}}\log({x_d} \cdot {y_d})"
-    )
+    st.latex(rf"^{{{a_d}}}\log({x_d}) + ^{{{a_d}}}\log({y_d}) = ^{{{a_d}}}\log({x_d} \cdot {y_d})")
 
     st.write("2. Hasil Perkalian Numerus:")
     st.latex(rf"= ^{{{a_d}}}\log({xy_prod})")
 
     try:
         val_res = math.log(xy_prod, a_d)
-        st.write("3. Hasil Akhir:")
-        st.latex(
-            rf"= {int(val_res) if val_res.is_integer() else round(val_res, 4)}"
-        )
+        if val_res.is_integer():
+            st.write("3. Hasil Akhir:")
+            st.latex(rf"= {int(val_res)}")
     except ValueError:
-        st.error("Input tidak valid.")
+        pass
 
 # -----------------------------------------------------------------------------
 # MENU 6: PENGURANGAN LOGARITMA (POIN E)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat E":
-    st.header(
-        r"e. Untuk \(a > 0, a \neq 1, x > 0, y > 0\) dan \(a, x, y \in \mathbb{R}\), berlaku:"
-    )
+    st.header("e. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x - {}^a\log y = {}^a\log\left(\frac{x}{y}\right)")
 
@@ -337,54 +249,40 @@ elif selected_key == "Sifat E":
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        a_e = st.number_input(
-            "Basis (a):", value=2, step=1, min_value=2, key="a_e"
-        )
+        a_e = st.number_input("Basis (a):", value=2, step=1, min_value=2, key="a_e")
     with col2:
-        x_e = st.number_input(
-            "Numerus Pertama (x):", value=32, step=1, min_value=1, key="x_e"
-        )
+        x_e = st.number_input("Numerus Pertama (x):", value=32, step=1, min_value=1, key="x_e")
     with col3:
-        y_e = st.number_input(
-            "Numerus Kedua (y):", value=2, step=1, min_value=1, key="y_e"
-        )
+        y_e = st.number_input("Numerus Kedua (y):", value=2, step=1, min_value=1, key="y_e")
 
     st.divider()
     st.subheader("📋 Langkah Penyelesaian:")
 
     st.write("1. Gabungkan Numerus (Pembagian):")
-    st.latex(
-        rf"^{{{a_e}}}\log({x_e}) - ^{{{a_e}}}\log({y_e}) ="
-        rf" ^{{{a_e}}}\log\left(\frac{{{x_e}}}{{{y_e}}}\right)"
-    )
+    st.latex(rf"^{{{a_e}}}\log({x_e}) - ^{{{a_e}}}\log({y_e}) = ^{{{a_e}}}\log\left(\frac{{{x_e}}}{{{y_e}}}\right)")
 
     div_frac = Fraction(x_e, y_e)
     if div_frac.denominator == 1:
         xy_div_str = f"{div_frac.numerator}"
     else:
-        xy_div_str = (
-            f"\\frac{{{div_frac.numerator}}}{{{div_frac.denominator}}}"
-        )
+        xy_div_str = f"\\frac{{{div_frac.numerator}}}{{{div_frac.denominator}}}"
 
     st.write("2. Hasil Pembagian Numerus:")
     st.latex(rf"= ^{{{a_e}}}\log\left({xy_div_str}\right)")
 
     try:
         val_res = math.log(x_e / y_e, a_e)
-        st.write("3. Hasil Akhir:")
-        st.latex(
-            rf"= {int(val_res) if val_res.is_integer() else round(val_res, 4)}"
-        )
+        if val_res.is_integer():
+            st.write("3. Hasil Akhir:")
+            st.latex(rf"= {int(val_res)}")
     except ValueError:
-        st.error("Input tidak valid.")
+        pass
 
 # -----------------------------------------------------------------------------
 # MENU 7: PERKALIAN LOGARITMA (POIN F)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat F":
-    st.header(
-        r"f. Untuk \(a > 0, a \neq 1, x > 0, y > 0\) dan \(a, x, y \in \mathbb{R}\), berlaku:"
-    )
+    st.header("f. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x \cdot {}^x\log y = {}^a\log y")
 
@@ -392,21 +290,11 @@ elif selected_key == "Sifat F":
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        a_f = st.number_input(
-            "Basis Pertama (a):", value=2, step=1, min_value=2, key="a_f"
-        )
+        a_f = st.number_input("Basis Pertama (a):", value=2, step=1, min_value=2, key="a_f")
     with col2:
-        x_f = st.number_input(
-            "Numerus 1 / Basis 2 (x):",
-            value=3,
-            step=1,
-            min_value=2,
-            key="x_f",
-        )
+        x_f = st.number_input("Numerus 1 / Basis 2 (x):", value=3, step=1, min_value=2, key="x_f")
     with col3:
-        y_f = st.number_input(
-            "Numerus Kedua (y):", value=16, step=1, min_value=1, key="y_f"
-        )
+        y_f = st.number_input("Numerus Kedua (y):", value=16, step=1, min_value=1, key="y_f")
 
     st.divider()
     st.subheader("📋 Langkah Penyelesaian:")
@@ -414,27 +302,22 @@ elif selected_key == "Sifat F":
     st.write("1. Bentuk Perkalian Logaritma Berantai:")
     st.latex(rf"^{{{a_f}}}\log({x_f}) \cdot ^{{{x_f}}}\log({y_f})")
 
-    st.write(
-        "2. Penyederhanaan (Menghilangkan Basis & Numerus x yang Sama):"
-    )
+    st.write("2. Penyederhanaan (Menghilangkan Basis & Numerus x yang Sama):")
     st.latex(rf"= ^{{{a_f}}}\log({y_f})")
 
     try:
         val_res = math.log(y_f, a_f)
-        st.write("3. Hasil Akhir:")
-        st.latex(
-            rf"= {int(val_res) if val_res.is_integer() else round(val_res, 4)}"
-        )
+        if val_res.is_integer():
+            st.write("3. Hasil Akhir:")
+            st.latex(rf"= {int(val_res)}")
     except ValueError:
-        st.error("Input tidak valid.")
+        pass
 
 # -----------------------------------------------------------------------------
 # MENU 8: MENGUBAH BASIS LOGARITMA (POIN G)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat G":
-    st.header(
-        r"g. Untuk \(a > 0, a \neq 1, b > 0, b \neq 1, x > 0\) dan \(a, b, x \in \mathbb{R}\), berlaku:"
-    )
+    st.header("g. Untuk \(a > 0, a \\neq 1, b > 0, b \\neq 1, x > 0\) dan \(a, b, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x = \frac{{}^b\log x}{{}^b\log a} = \frac{1}{{}^x\log a}")
 
@@ -443,62 +326,38 @@ elif selected_key == "Sifat G":
 
     with col1:
         st.subheader("A. Mengubah Basis ke-b")
-        a_g = st.number_input(
-            "Basis Awal (a):", value=4, step=1, min_value=2, key="a_g"
-        )
-        x_g = st.number_input(
-            "Numerus (x):", value=8, step=1, min_value=2, key="x_g"
-        )
-        b_g = st.number_input(
-            "Basis Baru (b):", value=2, step=1, min_value=2, key="b_g"
-        )
+        a_g = st.number_input("Basis Awal (a):", value=4, step=1, min_value=2, key="a_g")
+        x_g = st.number_input("Numerus (x):", value=8, step=1, min_value=2, key="x_g")
+        b_g = st.number_input("Basis Baru (b):", value=2, step=1, min_value=2, key="b_g")
 
         st.write("**Proses Ubah Basis:**")
-        st.latex(
-            rf"^{{{a_g}}}\log({x_g}) ="
-            rf" \frac{{^{{{b_g}}}\log({x_g})}}{{^{{{b_g}}}\log({a_g})}}"
-        )
+        st.latex(rf"^{{{a_g}}}\log({x_g}) = \frac{{^{{{b_g}}}\log({x_g})}}{{^{{{b_g}}}\log({a_g})}}")
 
         try:
             log_bx = math.log(x_g, b_g)
             log_ba = math.log(a_g, b_g)
-            hasil = log_bx / log_ba
-
-            frac_res = Fraction(Decimal(str(hasil))).limit_denominator()
-
-            if frac_res.denominator == 1:
-                res_str = f"{frac_res.numerator}"
+            frac_res = Fraction(Decimal(str(log_bx / log_ba))).limit_denominator() if not (log_bx/log_ba).is_integer() else int(log_bx/log_ba)
+            
+            if isinstance(frac_res, Fraction):
+                res_str = f"\\frac{{{frac_res.numerator}}}{{{frac_res.denominator}}}"
             else:
-                res_str = (
-                    f"\\frac{{{frac_res.numerator}}}{{{frac_res.denominator}}}"
-                )
-
-            str_bx = (
-                f"{int(log_bx)}" if log_bx.is_integer() else f"{round(log_bx, 2)}"
-            )
-            str_ba = (
-                f"{int(log_ba)}" if log_ba.is_integer() else f"{round(log_ba, 2)}"
-            )
+                res_str = f"{frac_res}"
 
             st.write("**Hasil Akhir:**")
-            st.latex(rf"= \frac{{{str_bx}}}{{{str_ba}}} = {res_str}")
+            st.latex(rf"= \frac{{{int(log_bx) if log_bx.is_integer() else round(log_bx, 2)}}}{{{int(log_ba) if log_ba.is_integer() else round(log_ba, 2)}}} = {res_str}")
         except Exception:
-            st.error("Terjadi kesalahan perhitungan.")
+            pass
 
     with col2:
         st.subheader("B. Kebalikan Basis & Numerus")
         st.write("**Bentuk Sifat:**")
-        st.latex(
-            rf"^{{{a_g}}}\log({x_g}) = \frac{{1}}{{^{{{x_g}}}\log({a_g})}}"
-        )
+        st.latex(rf"^{{{a_g}}}\log({x_g}) = \frac{{1}}{{^{{{x_g}}}\log({a_g})}}")
 
 # -----------------------------------------------------------------------------
 # MENU 9: PANGKAT DENGAN EKSPLISIT LOGARITMA (POIN H)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat H":
-    st.header(
-        r"h. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, x \in \mathbb{R}\), berlaku:"
-    )
+    st.header("h. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"a^{{}^a\log x} = x")
 
@@ -506,17 +365,9 @@ elif selected_key == "Sifat H":
     col1, col2 = st.columns(2)
 
     with col1:
-        a_h = st.number_input(
-            "Basis Utama / Basis Logaritma (a):",
-            value=2,
-            step=1,
-            min_value=2,
-            key="a_h",
-        )
+        a_h = st.number_input("Basis Utama / Basis Logaritma (a):", value=2, step=1, min_value=2, key="a_h")
     with col2:
-        x_h = st.number_input(
-            "Numerus / Hasil (x):", value=7, step=1, min_value=1, key="x_h"
-        )
+        x_h = st.number_input("Numerus / Hasil (x):", value=7, step=1, min_value=1, key="x_h")
 
     st.divider()
     st.subheader("📋 Langkah Penyelesaian:")
@@ -531,9 +382,7 @@ elif selected_key == "Sifat H":
 # MENU 10: PANGKAT DENGAN KOEFISIEN LOGARITMA (POIN I)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat I":
-    st.header(
-        r"i. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, x, n \in \mathbb{R}\), berlaku:"
-    )
+    st.header("i. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, x, n \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"a^{n \cdot {}^a\log x} = x^n")
 
@@ -541,21 +390,11 @@ elif selected_key == "Sifat I":
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        a_i = st.number_input(
-            "Basis Utama / Basis Log (a):",
-            value=3,
-            step=1,
-            min_value=2,
-            key="a_i",
-        )
+        a_i = st.number_input("Basis Utama / Basis Log (a):", value=3, step=1, min_value=2, key="a_i")
     with col2:
-        n_i = st.number_input(
-            "Koefisien Pangkat (n):", value=2, step=1, key="n_i"
-        )
+        n_i = st.number_input("Koefisien Pangkat (n):", value=2, step=1, key="n_i")
     with col3:
-        x_i = st.number_input(
-            "Numerus Logaritma (x):", value=5, step=1, min_value=1, key="x_i"
-        )
+        x_i = st.number_input("Numerus Logaritma (x):", value=5, step=1, min_value=1, key="x_i")
 
     hasil_i = int(math.pow(x_i, n_i))
 
