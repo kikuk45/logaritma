@@ -14,10 +14,27 @@ st.set_page_config(
 )
 
 # -----------------------------------------------------------------------------
-# HEADER APLIKASI
+# CUSTOM CSS FOR BACKGROUND & STYLING (Bukan Hitam Lagi)
+# -----------------------------------------------------------------------------
+st.markdown(
+    """
+    
+    """,
+    unsafe_allow_html=True
+)
+
+# -----------------------------------------------------------------------------
+# HEADER APLIKASI & ILUSTRASI KARTUN SMA
 # -----------------------------------------------------------------------------
 st.title("📐 Kalkulator & Learning Media Logaritma")
 st.caption("Materi sesuai buku cetak Matematika Kelas X (Definisi & Sifat-Sifat Logaritma)")
+
+# Ilustrasi Siswa SMA / Kartun Edukasi
+st.image(
+    "https://img.freepik.com/free-vector/flat-hand-drawn-high-school-students-illustration_23-2149372332.jpg",
+    use_container_width=True,
+)
+
 st.divider()
 
 # -----------------------------------------------------------------------------
@@ -48,7 +65,7 @@ selected_key = st.sidebar.radio(
 # MENU 1: DEFINISI LOGARITMA
 # -----------------------------------------------------------------------------
 if selected_key == "Definisi Logaritma":
-    st.header("Definisi Logaritma")
+    st.header("📘 Definisi Logaritma")
     st.write("Bentuk umum logaritma adalah:")
 
     st.latex(r"^a\log x = n \iff a^n = x")
@@ -100,8 +117,7 @@ if selected_key == "Definisi Logaritma":
 # MENU 2: SIFAT DASAR (POIN A)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat A":
-    st.header("a. Sifat Basis dan Numerus Sama")
-    st.write("Untuk \(a > 0\) dan \(a \\neq 1\), berlaku:")
+    st.header("a. Untuk \(a > 0\) dan \(a \\neq 1\), berlaku:")
 
     st.latex(r"^a\log 1 = 0 \quad \text{dan} \quad ^a\log a = 1")
 
@@ -126,8 +142,7 @@ elif selected_key == "Sifat A":
 # MENU 3: SIFAT PANGKAT NUMERUS (POIN B)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat B":
-    st.header("b. Sifat Pangkat Numerus")
-    st.write("Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, n, x \\in \\mathbb{R}\), berlaku:")
+    st.header("b. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, n, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x^n = n \cdot {}^a\log x")
 
@@ -162,8 +177,7 @@ elif selected_key == "Sifat B":
 # MENU 4: SIFAT PANGKAT BASIS & NUMERUS (POIN C)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat C":
-    st.header("c. Sifat Pangkat Basis dan Numerus")
-    st.write("Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, m, n, x \\in \\mathbb{R}\), berlaku:")
+    st.header("c. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, m, n, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^{a^n}\log x^m = \frac{m}{n} \cdot {}^a\log x")
 
@@ -207,8 +221,7 @@ elif selected_key == "Sifat C":
 # MENU 5: PENJUMLAHAN LOGARITMA (POIN D)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat D":
-    st.header("d. Sifat Penjumlahan Logaritma")
-    st.write("Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
+    st.header("d. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x + {}^a\log y = {}^a\log(x \cdot y)")
 
@@ -245,8 +258,7 @@ elif selected_key == "Sifat D":
 # MENU 6: PENGURANGAN LOGARITMA (POIN E)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat E":
-    st.header("e. Sifat Pengurangan Logaritma")
-    st.write("Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
+    st.header("e. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x - {}^a\log y = {}^a\log\left(\frac{x}{y}\right)")
 
@@ -287,8 +299,7 @@ elif selected_key == "Sifat E":
 # MENU 7: PERKALIAN LOGARITMA (POIN F)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat F":
-    st.header("f. Sifat Perkalian Logaritma Berantai")
-    st.write("Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
+    st.header("f. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x \cdot {}^x\log y = {}^a\log y")
 
@@ -323,8 +334,7 @@ elif selected_key == "Sifat F":
 # MENU 8: MENGUBAH BASIS LOGARITMA (POIN G)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat G":
-    st.header("g. Sifat Mengubah Basis Logaritma")
-    st.write("Untuk \(a > 0, a \\neq 1, b > 0, b \\neq 1, x > 0\) dan \(a, b, x \\in \\mathbb{R}\), berlaku:")
+    st.header("g. Untuk \(a > 0, a \\neq 1, b > 0, b \\neq 1, x > 0\) dan \(a, b, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x = \frac{{}^b\log x}{{}^b\log a} = \frac{1}{{}^x\log a}")
 
@@ -364,8 +374,7 @@ elif selected_key == "Sifat G":
 # MENU 9: PANGKAT DENGAN EKSPLISIT LOGARITMA (POIN H)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat H":
-    st.header("h. Sifat Eksponen Logaritma Basis Sama")
-    st.write("Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, x \\in \\mathbb{R}\), berlaku:")
+    st.header("h. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"a^{{}^a\log x} = x")
 
@@ -390,8 +399,7 @@ elif selected_key == "Sifat H":
 # MENU 10: PANGKAT DENGAN KOEFISIEN LOGARITMA (POIN I)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat I":
-    st.header("i. Sifat Eksponen Logaritma Berkoefisien")
-    st.write("Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, x, n \\in \\mathbb{R}\), berlaku:")
+    st.header("i. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, x, n \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"a^{n \cdot {}^a\log x} = x^n")
 
