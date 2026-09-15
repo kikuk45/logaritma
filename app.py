@@ -5,24 +5,19 @@ import base64
 import streamlit as st
 
 # -----------------------------------------------------------------------------
-# FUNGSI UNTUK KONVERSI GAMBAR KE BASE64 & SET BACKGROUND
+# FUNGSI HELPER: KONVERSI GAMBAR KE BASE64
 # -----------------------------------------------------------------------------
-def set_png_as_page_bg(png_file):
-    try:
-        with open(png_file, 'rb') as f:
-            data = f.read()
-        bin_str = base64.b64encode(data).decode()
-        
-        page_bg_img = f"""
-        
-        """
-        st.markdown(page_bg_img, unsafe_allow_html=True)
-    except FileNotFoundError:
-        # Jika file gambar belum ada/tidak sengaja terhapus, aplikasi tetap berjalan normal tanpa background
-        pass
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
 
-# Panggil fungsi background menggunakan file bg_siswa.png
-set_png_as_page_bg('bg_siswa.png')
+def set_png_background(png_file):
+    bin_str = get_base64_of_bin_file(png_file)
+    page_bg_img = f'''
+    
+    '''
+    st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
 # KONFIGURASI HALAMAN
@@ -33,6 +28,12 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+# Panggil fungsi background (Pastikan file 'bg_siswa.png' ada di direktori yang sama)
+try:
+    set_png_background('bg_siswa.png')
+except FileNotFoundError:
+    st.warning("File latar belakang 'bg_siswa.png' tidak ditemukan. Pastikan nama file dan lokasinya sudah benar.")
 
 # -----------------------------------------------------------------------------
 # HEADER APLIKASI
