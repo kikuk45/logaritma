@@ -100,7 +100,7 @@ if selected_key == "Definisi Logaritma":
 # MENU 2: SIFAT DASAR (POIN A)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat A":
-    st.header(r"a. Untuk \(a > 0\) dan \(a \neq 1\), berlaku:")
+    st.markdown("### a. Untuk \(a > 0\) dan \(a \\neq 1\), berlaku:")
 
     st.latex(r"^a\log 1 = 0 \quad \text{dan} \quad ^a\log a = 1")
 
@@ -125,7 +125,7 @@ elif selected_key == "Sifat A":
 # MENU 3: SIFAT PANGKAT NUMERUS (POIN B)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat B":
-    st.header(r"b. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, n, x \in \mathbb{R}\), berlaku:")
+    st.markdown("### b. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, n, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x^n = n \cdot {}^a\log x")
 
@@ -160,7 +160,7 @@ elif selected_key == "Sifat B":
 # MENU 4: SIFAT PANGKAT BASIS & NUMERUS (POIN C)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat C":
-    st.header(r"c. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, m, n, x \in \mathbb{R}\), berlaku:")
+    st.markdown("### c. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, m, n, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^{a^n}\log x^m = \frac{m}{n} \cdot {}^a\log x")
 
@@ -204,7 +204,7 @@ elif selected_key == "Sifat C":
 # MENU 5: PENJUMLAHAN LOGARITMA (POIN D)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat D":
-    st.header(r"d. Untuk \(a > 0, a \neq 1, x > 0, y > 0\) dan \(a, x, y \in \mathbb{R}\), berlaku:")
+    st.markdown("### d. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x + {}^a\log y = {}^a\log(x \cdot y)")
 
@@ -241,7 +241,7 @@ elif selected_key == "Sifat D":
 # MENU 6: PENGURANGAN LOGARITMA (POIN E)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat E":
-    st.header(r"e. Untuk \(a > 0, a \neq 1, x > 0, y > 0\) dan \(a, x, y \in \mathbb{R}\), berlaku:")
+    st.markdown("### e. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x - {}^a\log y = {}^a\log\left(\frac{x}{y}\right)")
 
@@ -282,7 +282,7 @@ elif selected_key == "Sifat E":
 # MENU 7: PERKALIAN LOGARITMA (POIN F)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat F":
-    st.header(r"f. Untuk \(a > 0, a \neq 1, x > 0, y > 0\) dan \(a, x, y \in \mathbb{R}\), berlaku:")
+    st.markdown("### f. Untuk \(a > 0, a \\neq 1, x > 0, y > 0\) dan \(a, x, y \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x \cdot {}^x\log y = {}^a\log y")
 
@@ -317,7 +317,7 @@ elif selected_key == "Sifat F":
 # MENU 8: MENGUBAH BASIS LOGARITMA (POIN G)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat G":
-    st.header(r"g. Untuk \(a > 0, a \neq 1, b > 0, b \neq 1, x > 0\) dan \(a, b, x \in \mathbb{R}\), berlaku:")
+    st.markdown("### g. Untuk \(a > 0, a \\neq 1, b > 0, b \\neq 1, x > 0\) dan \(a, b, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"^a\log x = \frac{{}^b\log x}{{}^b\log a} = \frac{1}{{}^x\log a}")
 
@@ -357,7 +357,7 @@ elif selected_key == "Sifat G":
 # MENU 9: PANGKAT DENGAN EKSPLISIT LOGARITMA (POIN H)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat H":
-    st.header(r"h. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, x \in \mathbb{R}\), berlaku:")
+    st.markdown("### h. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, x \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"a^{{}^a\log x} = x")
 
@@ -382,7 +382,7 @@ elif selected_key == "Sifat H":
 # MENU 10: PANGKAT DENGAN KOEFISIEN LOGARITMA (POIN I)
 # -----------------------------------------------------------------------------
 elif selected_key == "Sifat I":
-    st.header(r"i. Untuk \(a > 0, a \neq 1, x > 0\) dan \(a, x, n \in \mathbb{R}\), berlaku:")
+    st.markdown("### i. Untuk \(a > 0, a \\neq 1, x > 0\) dan \(a, x, n \\in \\mathbb{R}\), berlaku:")
 
     st.latex(r"a^{n \cdot {}^a\log x} = x^n")
 
