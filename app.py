@@ -282,4 +282,3 @@ elif menu == "4. Sifat Pangkat Basis & Numerus":
     )
 
 "Oleh : Mochammad Rifqi Al Khadziq"
-dari kodingan ini kenapa menu ini malah kosong tadinya ada
