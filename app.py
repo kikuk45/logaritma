@@ -18,8 +18,8 @@ st.set_page_config(
 # BACKGROUND IMAGE (bg_siswa.png)
 # -----------------------------------------------------------------------------
 def set_background(image_file: str):
-    """Menjadikan gambar lokal sebagai background aplikasi Streamlit, tampil utuh tanpa terpotong,
-    dengan kartu konten solid supaya teks tetap kontras dan mudah dibaca."""
+    """Menjadikan gambar lokal sebagai background full-screen aplikasi Streamlit,
+    dengan overlay tipis + paksa warna teks gelap supaya tetap jelas terbaca."""
     with open(image_file, "rb") as f:
         img_data = f.read()
     b64_encoded = base64.b64encode(img_data).decode()
@@ -27,40 +27,43 @@ def set_background(image_file: str):
     st.markdown(
         f"""
         <style>
-        /* Foto ditampilkan utuh (contain) supaya tidak ada bagian yang terpotong */
-        [data-testid="stAppViewContainer"] {{
+        /* Foto memenuhi seluruh layar (full screen) */
+        .stApp {{
             background-image: url("data:image/png;base64,{b64_encoded}");
             background-repeat: no-repeat;
-            background-position: top center;
-            background-size: contain;
+            background-position: center;
+            background-size: cover;
             background-attachment: fixed;
-            background-color: #eaf4fb; /* warna pengisi area kosong di sisi foto, sesuaikan jika perlu */
+        }}
+
+        /* Overlay putih tipis di seluruh halaman agar teks tetap kontras,
+           tapi foto tetap kelihatan jelas di belakangnya */
+        .stApp::before {{
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-color: rgba(255, 255, 255, 0.55);
+            z-index: 0;
+            pointer-events: none;
+        }}
+
+        [data-testid="stAppViewContainer"] {{
+            position: relative;
+            z-index: 1;
         }}
 
         [data-testid="stHeader"] {{
-            background-color: rgba(0, 0, 0, 0);
+            background-color: rgba(0, 0, 0, 0) !important;
         }}
 
-        /* Sidebar dibuat solid + teksnya dipaksa gelap agar menu navigasi tetap jelas */
+        /* Paksa semua teks jadi gelap, apa pun tema/struktur elemennya */
+        [data-testid="stAppViewContainer"] * {{
+            color: #14213d !important;
+        }}
+
+        /* Sidebar dibuat solid agar menu navigasi paling jelas dibaca */
         section[data-testid="stSidebar"] {{
-            background-color: rgba(255, 255, 255, 0.98) !important;
-        }}
-        section[data-testid="stSidebar"] * {{
-            color: #1a1a1a !important;
-        }}
-
-        /* Konten utama dibungkus kartu solid supaya teks & rumus kontras tinggi,
-           sementara foto tetap terlihat penuh di area luar kartu */
-        div[data-testid="stAppViewContainer"] .main .block-container {{
             background-color: rgba(255, 255, 255, 0.96) !important;
-            border-radius: 18px;
-            padding: 2.5rem 2.5rem 3rem 2.5rem;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.18);
-        }}
-        div[data-testid="stAppViewContainer"] .main .block-container * {{
-            color: #1a1a1a !important;
         }}
         </style>
         """,
